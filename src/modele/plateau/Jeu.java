@@ -8,7 +8,7 @@ package modele.plateau;
 import java.util.Observable;
 
 
-public class Jeu extends Observable implements Runnable {
+public class Jeu extends Observable implements Runnable{
 
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 10;
@@ -19,39 +19,46 @@ public class Jeu extends Observable implements Runnable {
 
     private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE_X][SIZE_Y];
 
-    public Jeu() {
+    public Jeu(){
+
         initialisationDesEntites();
     }
 
-    public Heros getHeros() {
+    public Heros getHeros(){
+
         return heros;
     }
 
-    public EntiteStatique[][] getGrille() {
+    public EntiteStatique[][] getGrille(){
+
         return grilleEntitesStatiques;
     }
 
-	public EntiteStatique getEntite(int x, int y) {
-		if (x < 0 || x >= SIZE_X || y < 0 || y >= SIZE_Y) {
+	public EntiteStatique getEntite(int x, int y){
+
+		if((x < 0) || (x >= SIZE_X) || (y < 0) || (y >= SIZE_Y)){
+
 			// L'entité demandée est en-dehors de la grille
 			return null;
 		}
+
 		return grilleEntitesStatiques[x][y];
 	}
 
-    private void initialisationDesEntites() {
+    private void initialisationDesEntites(){
+
         heros = new Heros(this, 4, 4);
 
-
-
         // murs extérieurs horizontaux
-        for (int x = 0; x < 20; x++) {
+        for(int x = 0; x < 20; ++x){
+
             addEntiteStatique(new Mur(this), x, 0);
             addEntiteStatique(new Mur(this), x, 9);
         }
 
         // murs extérieurs verticaux
-        for (int y = 1; y < 9; y++) {
+        for(int y = 1; y < 9; ++y){
+
             addEntiteStatique(new Mur(this), 0, y);
             addEntiteStatique(new Mur(this), 19, y);
         }
@@ -59,43 +66,43 @@ public class Jeu extends Observable implements Runnable {
         addEntiteStatique(new Mur(this), 2, 6);
         addEntiteStatique(new Mur(this), 3, 6);
 
-        for (int x = 0; x < SIZE_X; x++) {
-            for (int y = 0; y < SIZE_Y; y++) {
-                if (grilleEntitesStatiques[x][y] == null) {
+        for(int x = 0; x < SIZE_X; ++x){
+
+            for(int y = 0; y < SIZE_Y; ++y){
+
+                if(grilleEntitesStatiques[x][y] == null){
+
                     grilleEntitesStatiques[x][y] = new CaseNormale(this);
                 }
-
             }
         }
-
-
     }
 
-    public void start() {
+    public void start(){
+
         new Thread(this).start();
     }
 
-    public void run() {
+    public void run(){
 
-        while(true) {
+        while(true){
 
             setChanged();
             notifyObservers();
 
-            try {
+            try{
+
                 Thread.sleep(pause);
-            } catch (InterruptedException e) {
+            }
+            catch(InterruptedException e){
+
                 e.printStackTrace();
             }
-
         }
-
     }
 
+    private void addEntiteStatique(EntiteStatique e, int x, int y){
 
-    private void addEntiteStatique(EntiteStatique e, int x, int y) {
         grilleEntitesStatiques[x][y] = e;
-
     }
-
 }

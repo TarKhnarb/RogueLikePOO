@@ -3,13 +3,14 @@ package modele.plateau;
 /**
  * Ne bouge pas (murs...)
  */
-public abstract class EntiteStatique {
+public abstract class EntiteStatique{
+
     protected Jeu jeu;
 
-    public EntiteStatique(Jeu _jeu) {
-        jeu = _jeu;
+    public EntiteStatique(Jeu jeu){
+
+        this.jeu = jeu;
     }
 
     public abstract boolean traversable();
-
 }

@@ -1,11 +1,15 @@
 package modele.plateau;
 
-public class CaseNormale extends EntiteStatique {
-    public CaseNormale(Jeu _jeu) { super(_jeu); }
+public class CaseNormale extends EntiteStatique{
 
-    @Override
-    public boolean traversable() {
-        return true;
+    public CaseNormale(Jeu jeu){
+
+        super(jeu);
     }
 
+    @Override
+    public boolean traversable(){
+
+        return true;
+    }
 }

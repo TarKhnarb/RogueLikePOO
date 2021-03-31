@@ -8,55 +8,70 @@ package modele.plateau;
 /**
  * Héros du jeu
  */
-public class Heros {
+public class Heros{
+
     private int x;
     private int y;
 
     private Jeu jeu;
 
-    public int getX() {
+    public int getX(){
+
         return x;
     }
 
-    public int getY() {
+    public int getY(){
+
         return y;
     }
 
-    public Heros(Jeu _jeu, int _x, int _y) {
-        jeu = _jeu;
-        x = _x;
-        y = _y;
+    public Heros(Jeu jeu, int x, int y){
+
+        this.jeu = jeu;
+        this.x = x;
+        this.y = y;
     }
 
-    public void droite() {
-        if (traversable(x+1, y)) {
-            x ++;
+    public void droite(){
+
+        if(traversable(x+1, y)){
+
+            ++x;
         }
     }
 
-    public void gauche() {
-        if (traversable(x-1, y)) {
-            x --;
+    public void gauche(){
+
+        if(traversable(x-1, y)){
+
+            --x;
         }
     }
 
-    public void bas() {
-        if (traversable(x, y+1)) {
-            y ++;
+    public void bas(){
+
+        if(traversable(x, y+1)){
+
+            ++y;
         }
     }
 
-    public void haut() {
-        if (traversable(x, y-1)) {
-            y --;
+    public void haut(){
+
+        if(traversable(x, y-1)){
+
+            --y;
         }
     }
 
-    private boolean traversable(int x, int y) {
+    private boolean traversable(int x, int y){
 
-        if (x >0 && x < jeu.SIZE_X && y > 0 && y < jeu.SIZE_Y) {
+        if((x > 0) && (x < jeu.SIZE_X) && (y > 0) && (y < jeu.SIZE_Y)){
+
             return jeu.getEntite(x, y).traversable();
-        } else {
+        }
+        else{
+
             return false;
         }
     }
