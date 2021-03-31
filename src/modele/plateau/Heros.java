@@ -21,6 +21,8 @@ public class Heros{
         this.jeu = jeu;
         this.x = x;
         this.y = y;
+
+        inventaire = new Inventaire();
     }
 
     public int getX(){
@@ -31,6 +33,11 @@ public class Heros{
     public int getY(){
 
         return y;
+    }
+
+    public Inventaire getInventaire(){
+
+        return inventaire;
     }
 
     public void droite(){
