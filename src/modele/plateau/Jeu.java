@@ -10,30 +10,44 @@ import java.util.Observable;
 
 public class Jeu extends Observable implements Runnable{
 
+        /*************
+         * Variables *
+         *************/
     public static final int SIZE_X = 20;
     public static final int SIZE_Y = 10;
 
     private int pause = 200; // période de rafraichissement
 
     private Heros heros;
-
     private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE_X][SIZE_Y];
 
+        /****************
+         * Constructeur *
+         ****************/
     public Jeu(){
 
         initialisationDesEntites();
     }
 
+        /************
+         * GetHeros *
+         ************/
     public Heros getHeros(){
 
         return heros;
     }
 
+        /*************
+         * GetGrille *
+         *************/
     public EntiteStatique[][] getGrille(){
 
         return grilleEntitesStatiques;
     }
 
+        /*************
+         * GetEntite *
+         *************/
 	public EntiteStatique getEntite(int x, int y){
 
 		if((x < 0) || (x >= SIZE_X) || (y < 0) || (y >= SIZE_Y)){
@@ -45,6 +59,9 @@ public class Jeu extends Observable implements Runnable{
 		return grilleEntitesStatiques[x][y];
 	}
 
+        /****************************
+         * InitialisationDesEntites *
+         ****************************/
     private void initialisationDesEntites(){
 
         heros = new Heros(this, 4, 4);
@@ -52,19 +69,19 @@ public class Jeu extends Observable implements Runnable{
         // murs extérieurs horizontaux
         for(int x = 0; x < 20; ++x){
 
-            addEntiteStatique(new Mur(this), x, 0);
-            addEntiteStatique(new Mur(this), x, 9);
+            ajouteEntiteStatique(new Mur(this), x, 0);
+            ajouteEntiteStatique(new Mur(this), x, 9);
         }
 
         // murs extérieurs verticaux
         for(int y = 1; y < 9; ++y){
 
-            addEntiteStatique(new Mur(this), 0, y);
-            addEntiteStatique(new Mur(this), 19, y);
+            ajouteEntiteStatique(new Mur(this), 0, y);
+            ajouteEntiteStatique(new Mur(this), 19, y);
         }
 
-        addEntiteStatique(new Mur(this), 2, 6);
-        addEntiteStatique(new Mur(this), 3, 6);
+        ajouteEntiteStatique(new Mur(this), 2, 6);
+        ajouteEntiteStatique(new Mur(this), 3, 6);
 
         for(int x = 0; x < SIZE_X; ++x){
 
@@ -78,11 +95,17 @@ public class Jeu extends Observable implements Runnable{
         }
     }
 
+        /*********
+         * Start *
+         *********/
     public void start(){
 
         new Thread(this).start();
     }
 
+        /*******
+         * Run *
+         *******/
     public void run(){
 
         while(true){
@@ -101,7 +124,10 @@ public class Jeu extends Observable implements Runnable{
         }
     }
 
-    private void addEntiteStatique(EntiteStatique e, int x, int y){
+        /*************************
+         * AjouterEntiteStatique *
+         *************************/
+    private void ajouteEntiteStatique(EntiteStatique e, int x, int y){
 
         grilleEntitesStatiques[x][y] = e;
     }

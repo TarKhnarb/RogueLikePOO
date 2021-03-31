@@ -3,6 +3,9 @@ package modele.plateau;
 
 public class Inventaire{
 
+        /************************
+         * Enumération: Element *
+         ************************/
     enum Element{
 
         Cle,
@@ -11,8 +14,14 @@ public class Inventaire{
         ALL
     }
 
+        /*************
+         * Variables *
+         *************/
     private int[] inventaire;
 
+        /****************
+         * Constructeur *
+         ****************/
     public Inventaire(){
 
         this.inventaire = new int[Element.ALL.ordinal()];
@@ -20,6 +29,9 @@ public class Inventaire{
         initInventaire();
     }
 
+        /******************
+         * InitInventaire *
+         ******************/
     public void initInventaire(){
 
         for(int i = 0; i < Element.ALL.ordinal(); ++i){
@@ -28,21 +40,33 @@ public class Inventaire{
         }
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public int getTaille(){
 
         return Element.ALL.ordinal();
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public int getInventaire(Element elmt) throws ArrayIndexOutOfBoundsException{
 
         return inventaire[elmt.ordinal()];
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public int getInventaire(int index) throws ArrayIndexOutOfBoundsException{
 
         return inventaire[index];
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public void enleverNElement(Element elmt, int nb) throws Exception{
 
         if(inventaire[elmt.ordinal()] >= nb){
@@ -56,6 +80,9 @@ public class Inventaire{
         }
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public void ajouterNElement(Element elmt, int nb) throws Exception{
 
         if(nb >= 0){
@@ -68,6 +95,9 @@ public class Inventaire{
         }
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public void recupererInventaire(Inventaire inventaire) throws Exception{
 
         int temp;
@@ -79,6 +109,9 @@ public class Inventaire{
         }
     }
 
+        /****************
+         * Constructeur *
+         ****************/
     public String getNomElement(int i){
 
         return Element.values()[i].name();

@@ -1,6 +1,6 @@
 package VueControleur;
 
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -11,6 +11,7 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.lang.model.element.Element;
 import javax.swing.*;
 
 
@@ -20,10 +21,12 @@ import modele.plateau.*;
 /** Cette classe a deux fonctions :
  *  (1) Vue : proposer une représentation graphique de l'application (cases graphiques, etc.)
  *  (2) Controleur : écouter les évènements clavier et déclencher le traitement adapté sur le modèle (flèches direction, etc.))
- *
  */
 public class VueControleur extends JFrame implements Observer{
 
+        /*************
+         * Variables *
+         *************/
     private Jeu jeu; // référence sur une classe de modèle : permet d'accéder aux données du modèle pour le rafraichissement, permet de communiquer les actions clavier (ou souris)
 
     private int sizeX; // taille de la grille affichée
@@ -36,7 +39,11 @@ public class VueControleur extends JFrame implements Observer{
     private ImageIcon icoColonne;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
+    private JLabel[][] inventaireLabel;
 
+        /****************
+         * Constructeur *
+         ****************/
     public VueControleur(Jeu jeu){
 
         sizeX = this.jeu.SIZE_X;
@@ -48,6 +55,9 @@ public class VueControleur extends JFrame implements Observer{
         ajouterEcouteurClavier();
     }
 
+        /**************************
+         * AjouterEcouteurClavier *
+         **************************/
     private void ajouterEcouteurClavier(){
 
         addKeyListener(new KeyAdapter(){ // new KeyAdapter() { ... } est une instance de classe anonyme, il s'agit d'un objet qui correspond au controleur dans MVC
@@ -66,7 +76,9 @@ public class VueControleur extends JFrame implements Observer{
         });
     }
 
-
+        /********************
+         * ChargerLesIcones *
+         ********************/
     private void chargerLesIcones(){
 
         icoHero = chargerIcone("Images/Pacman.png");
@@ -74,6 +86,9 @@ public class VueControleur extends JFrame implements Observer{
         icoMur = chargerIcone("Images/Mur.png");
     }
 
+        /****************
+         * ChargerIcone *
+         ****************/
     private ImageIcon chargerIcone(String urlIcone){
 
         BufferedImage image = null;
@@ -91,11 +106,48 @@ public class VueControleur extends JFrame implements Observer{
         return new ImageIcon(image);
     }
 
+        /*********************************
+         * PlacerLesComposantsGraphiques *
+         *********************************/
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(400, 250);
+        setSize(400, 275);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
+
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        placerInventaire(panel);
+
+        placerGrille(panel);
+
+        this.add(panel);
+    }
+
+        /********************
+         * PlacerInventaire *
+         ********************/
+    private void placerInventaire(JPanel panel){
+
+        Inventaire inventaire = jeu.getHeros().getInventaire();
+        JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()));
+
+        inventaireLabel = new JLabel[1][inventaire.getTaille()*2];
+
+        for(int i = 0; i < inventaire.getTaille()*2; ++i){
+
+            JLabel label = new JLabel();
+            inventaireLabel[0][i] = label;
+            panelInventaire.add(label);
+        }
+
+        panel.add(panelInventaire);
+    }
+
+        /***************
+         * Constructeur *
+         ****************/
+    private void placerGrille(JPanel panel){
 
         JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
 
@@ -111,28 +163,54 @@ public class VueControleur extends JFrame implements Observer{
             }
         }
 
-        add(grilleJLabels);
+        panel.add(grilleJLabels);
     }
 
-    
     /**
      * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
      */
+        /************************
+         * MettreAJourAffichage *
+         ************************/
     private void mettreAJourAffichage(){
+
+        mettreAJourInventaire();
+
+        mettreAJourGrille();
+    }
+
+        /*************************
+         * MettreAJourInventaire *
+         *************************/
+    private void mettreAJourInventaire(){
+
+        Inventaire inventaire = jeu.getHeros().getInventaire();
+
+        for(int i = 0; i < inventaire.getTaille()*2 - 1; i= (i+2)){
+
+            inventaireLabel[0][i].setText(inventaire.getNomElement(i/2));
+            inventaireLabel[0][i+1].setText(String.valueOf(inventaire.getInventaire(i/2)));
+        }
+    }
+
+        /*********************
+         * MettreAJourGrille *
+         *********************/
+    private void mettreAJourGrille(){
 
         for(int x = 0; x < sizeX; ++x){
 
             for(int y = 0; y < sizeY; ++y){
 
-				EntiteStatique e = jeu.getEntite(x, y);
+                EntiteStatique e = jeu.getEntite(x, y);
 
-				if(e instanceof Mur){
+                if(e instanceof Mur){
 
                     tabJLabel[x][y].setIcon(icoMur);
                 }
-				else if(e instanceof CaseNormale){
+                else if(e instanceof CaseNormale){
 
-				    tabJLabel[x][y].setIcon(icoCaseNormale);
+                    tabJLabel[x][y].setIcon(icoCaseNormale);
                 }
             }
         }
@@ -140,6 +218,9 @@ public class VueControleur extends JFrame implements Observer{
         tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero);
     }
 
+        /**********
+         * Update *
+         **********/
     @Override
     public void update(Observable o, Object arg){
 

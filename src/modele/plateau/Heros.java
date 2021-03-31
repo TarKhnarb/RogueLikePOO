@@ -10,12 +10,18 @@ package modele.plateau;
  */
 public class Heros{
 
+        /*************
+         * Variables *
+         *************/
     private int x;
     private int y;
 
     private Jeu jeu;
     private Inventaire inventaire;
 
+        /****************
+         * Constructeur *
+         ****************/
     public Heros(Jeu jeu, int x, int y){
 
         this.jeu = jeu;
@@ -25,45 +31,33 @@ public class Heros{
         inventaire = new Inventaire();
     }
 
+        /********
+         * GetX *
+         ********/
     public int getX(){
 
         return x;
     }
 
+        /********
+         * GetY *
+         ********/
     public int getY(){
 
         return y;
     }
 
+        /*****************
+         * GetInventaire *
+         *****************/
     public Inventaire getInventaire(){
 
         return inventaire;
     }
 
-    public void droite(){
-
-        if(traversable(x+1, y)){
-
-            ++x;
-        }
-    }
-
-    public void gauche(){
-
-        if(traversable(x-1, y)){
-
-            --x;
-        }
-    }
-
-    public void bas(){
-
-        if(traversable(x, y+1)){
-
-            ++y;
-        }
-    }
-
+        /********
+         * Haut *
+         ********/
     public void haut(){
 
         if(traversable(x, y-1)){
@@ -72,6 +66,42 @@ public class Heros{
         }
     }
 
+        /**********
+         * Droite *
+         **********/
+    public void droite(){
+
+        if(traversable(x+1, y)){
+
+            ++x;
+        }
+    }
+
+        /*******
+         * Bas *
+         *******/
+    public void bas(){
+
+        if(traversable(x, y+1)){
+
+            ++y;
+        }
+    }
+
+        /**********
+         * Gauche *
+         **********/
+    public void gauche(){
+
+        if(traversable(x-1, y)){
+
+            --x;
+        }
+    }
+
+        /***************
+         * Traversable *
+         ***************/
     private boolean traversable(int x, int y){
 
         if((x > 0) && (x < jeu.SIZE_X) && (y > 0) && (y < jeu.SIZE_Y)){
