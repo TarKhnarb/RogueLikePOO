@@ -14,6 +14,14 @@ public class Heros{
     private int y;
 
     private Jeu jeu;
+    private Inventaire inventaire;
+
+    public Heros(Jeu jeu, int x, int y){
+
+        this.jeu = jeu;
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX(){
 
@@ -23,13 +31,6 @@ public class Heros{
     public int getY(){
 
         return y;
-    }
-
-    public Heros(Jeu jeu, int x, int y){
-
-        this.jeu = jeu;
-        this.x = x;
-        this.y = y;
     }
 
     public void droite(){
