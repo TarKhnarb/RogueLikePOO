@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Hero.*;
 import Plateau.Salles.Cases.CaseNormale;
@@ -35,7 +36,7 @@ public class VueControleur extends JFrame implements Observer{
     private int sizeY;
 
     // icones affichées dans la grille
-    private ImageIcon icoHero;
+    private ImageIcon[] icoHero;
     private ImageIcon icoCaseNormale;
     private ImageIcon icoMur;
     private ImageIcon icoColonne;
@@ -122,8 +123,12 @@ public class VueControleur extends JFrame implements Observer{
          ********************/
     private void chargerLesIcones(){
 
-        icoHero = chargerIcone("Images/Pacman.png");
-        icoCaseNormale = chargerIcone("Images/Vide.png");
+        icoHero = new ImageIcon[4];
+        icoHero[0] = chargerIcone("Images/Pacman_H.png");
+        icoHero[1] = chargerIcone("Images/Pacman_D.png");
+        icoHero[2] = chargerIcone("Images/Pacman_B.png");
+        icoHero[3] = chargerIcone("Images/Pacman_G.png");
+        icoCaseNormale = chargerIcone("Images/Vide2.png");
         icoMur = chargerIcone("Images/Mur.png");
     }
 
@@ -177,7 +182,6 @@ public class VueControleur extends JFrame implements Observer{
 
         for(int i = 0; i < inventaire.getTaille()*2; ++i){
 
-            System.out.println(inventaire.getTaille());
             JLabel label = new JLabel();
             inventaireLabel[0][i] = label;
             panelInventaire.add(label);
@@ -256,7 +260,7 @@ public class VueControleur extends JFrame implements Observer{
                 }
             }
         }
-        tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero);
+        tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero[jeu.getHeros().getDirection().ordinal()]);
     }
 
         /**********
