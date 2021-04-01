@@ -1,19 +1,19 @@
 package modele.plateau;
 
 
+
 public class Inventaire{
 
-        /************************
-         * Enumération: Element *
-         ************************/
-    enum Element{
+    /************************
+     * Enumération: Element *
+     ************************/
+    public enum Element{
 
         Cle,
         test1,
         test2,
         ALL
     }
-
         /*************
          * Variables *
          *************/
@@ -40,33 +40,25 @@ public class Inventaire{
         }
     }
 
-        /****************
-         * Constructeur *
-         ****************/
+        /*************
+         * GetTaille *
+         *************/
     public int getTaille(){
 
         return Element.ALL.ordinal();
     }
 
-        /****************
-         * Constructeur *
-         ****************/
+        /*****************
+         * GetInventaire *
+         *****************/
     public int getInventaire(Element elmt) throws ArrayIndexOutOfBoundsException{
 
         return inventaire[elmt.ordinal()];
     }
 
-        /****************
-         * Constructeur *
-         ****************/
-    public int getInventaire(int index) throws ArrayIndexOutOfBoundsException{
-
-        return inventaire[index];
-    }
-
-        /****************
-         * Constructeur *
-         ****************/
+        /*******************
+         * EnleverNElement *
+         *******************/
     public void enleverNElement(Element elmt, int nb) throws Exception{
 
         if(inventaire[elmt.ordinal()] >= nb){
@@ -80,9 +72,9 @@ public class Inventaire{
         }
     }
 
-        /****************
-         * Constructeur *
-         ****************/
+        /*******************
+         * AjouterNElement *
+         *******************/
     public void ajouterNElement(Element elmt, int nb) throws Exception{
 
         if(nb >= 0){
@@ -95,9 +87,9 @@ public class Inventaire{
         }
     }
 
-        /****************
-         * Constructeur *
-         ****************/
+        /***********************
+         * RecupererInventaire *
+         ***********************/
     public void recupererInventaire(Inventaire inventaire) throws Exception{
 
         int temp;
@@ -107,13 +99,5 @@ public class Inventaire{
             this.inventaire[i] += temp;
             inventaire.enleverNElement(Element.values()[i], temp);
         }
-    }
-
-        /****************
-         * Constructeur *
-         ****************/
-    public String getNomElement(int i){
-
-        return Element.values()[i].name();
     }
 }

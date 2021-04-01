@@ -11,7 +11,6 @@ import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.lang.model.element.Element;
 import javax.swing.*;
 
 
@@ -130,7 +129,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerInventaire(JPanel panel){
 
         Inventaire inventaire = jeu.getHeros().getInventaire();
-        JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()));
+        JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()*2));
 
         inventaireLabel = new JLabel[1][inventaire.getTaille()*2];
 
@@ -188,8 +187,8 @@ public class VueControleur extends JFrame implements Observer{
 
         for(int i = 0; i < inventaire.getTaille()*2 - 1; i= (i+2)){
 
-            inventaireLabel[0][i].setText(inventaire.getNomElement(i/2));
-            inventaireLabel[0][i+1].setText(String.valueOf(inventaire.getInventaire(i/2)));
+            inventaireLabel[0][i].setText(Inventaire.Element.values()[i/2].name());
+            inventaireLabel[0][i+1].setText(String.valueOf(inventaire.getInventaire(Inventaire.Element.values()[i/2])));
         }
     }
 
