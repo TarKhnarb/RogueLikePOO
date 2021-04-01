@@ -153,7 +153,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(400, 275);
+        setSize(430, 300);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();
@@ -256,7 +256,6 @@ public class VueControleur extends JFrame implements Observer{
                 }
             }
         }
-
         tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero);
     }
 

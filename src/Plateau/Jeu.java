@@ -18,8 +18,8 @@ public class Jeu extends Observable implements Runnable{
         /*************
          * Variables *
          *************/
-    public static final int SIZE_X = 20;
-    public static final int SIZE_Y = 10;
+    public static final int SIZE_X = 21;
+    public static final int SIZE_Y = 11;
 
     private int pause = 200; // période de rafraichissement
 
@@ -69,20 +69,20 @@ public class Jeu extends Observable implements Runnable{
          ****************************/
     private void initialisationDesEntites(){
 
-        heros = new Heros(this, 4, 4);
+        heros = new Heros(this, 10, 5);
 
         // murs extérieurs horizontaux
-        for(int x = 0; x < 20; ++x){
+        for(int x = 0; x < 21; ++x){
 
             ajouteEntiteStatique(new Mur(this), x, 0);
-            ajouteEntiteStatique(new Mur(this), x, 9);
+            ajouteEntiteStatique(new Mur(this), x, 10);
         }
 
         // murs extérieurs verticaux
-        for(int y = 1; y < 9; ++y){
+        for(int y = 1; y < 10; ++y){
 
             ajouteEntiteStatique(new Mur(this), 0, y);
-            ajouteEntiteStatique(new Mur(this), 19, y);
+            ajouteEntiteStatique(new Mur(this), 20, y);
         }
 
         ajouteEntiteStatique(new Mur(this), 2, 6);
