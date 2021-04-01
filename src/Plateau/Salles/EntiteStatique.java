@@ -1,4 +1,6 @@
-package modele.plateau;
+package Plateau.Salles;
+
+import Plateau.Jeu;
 
 /**
  * Ne bouge pas (murs...)
@@ -21,5 +23,5 @@ public abstract class EntiteStatique{
         /***************
          * Traversable *
          ***************/
-    public abstract boolean traversable();
+    public abstract boolean traversable() throws Exception;
 }

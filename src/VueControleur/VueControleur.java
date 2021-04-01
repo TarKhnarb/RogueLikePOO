@@ -13,8 +13,9 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-
-import modele.plateau.*;
+import Plateau.Jeu;
+import Plateau.Hero.*;
+import Plateau.Salles.*;
 
 
 /** Cette classe a deux fonctions :
@@ -66,10 +67,49 @@ public class VueControleur extends JFrame implements Observer{
 
                 switch(e.getKeyCode()){  // on regarde quelle touche a été pressée
 
-                    case KeyEvent.VK_LEFT : jeu.getHeros().gauche(); break;
-                    case KeyEvent.VK_RIGHT : jeu.getHeros().droite();break;
-                    case KeyEvent.VK_DOWN : jeu.getHeros().bas(); break;
-                    case KeyEvent.VK_UP : jeu.getHeros().haut(); break;
+                    case KeyEvent.VK_LEFT:
+                        try{
+
+                            jeu.getHeros().gauche();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
+
+                    case KeyEvent.VK_RIGHT:
+                        try{
+
+                            jeu.getHeros().droite();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
+
+                    case KeyEvent.VK_DOWN:
+                        try{
+
+                            jeu.getHeros().bas();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
+
+                    case KeyEvent.VK_UP:
+                        try{
+
+                            jeu.getHeros().haut();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
                 }
             }
         });
@@ -135,6 +175,7 @@ public class VueControleur extends JFrame implements Observer{
 
         for(int i = 0; i < inventaire.getTaille()*2; ++i){
 
+            System.out.println(inventaire.getTaille());
             JLabel label = new JLabel();
             inventaireLabel[0][i] = label;
             panelInventaire.add(label);
@@ -143,8 +184,8 @@ public class VueControleur extends JFrame implements Observer{
         panel.add(panelInventaire);
     }
 
-        /***************
-         * Constructeur *
+        /****************
+         * PlacerGrille *
          ****************/
     private void placerGrille(JPanel panel){
 

@@ -1,11 +1,13 @@
-package modele.plateau;
+package Plateau.Salles;
 
-public class CaseNormale extends EntiteStatique{
+import Plateau.Jeu;
+
+public class Mur extends EntiteStatique {
 
         /****************
          * Constructeur *
          ****************/
-    public CaseNormale(Jeu jeu){
+    public Mur(Jeu jeu){
 
         super(jeu);
     }
@@ -16,6 +18,6 @@ public class CaseNormale extends EntiteStatique{
     @Override
     public boolean traversable(){
 
-        return true;
+        return false;
     }
 }

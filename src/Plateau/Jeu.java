@@ -3,7 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele.plateau;
+package Plateau;
+
+import Plateau.Salles.EntiteStatique;
+import Plateau.Hero.Heros;
+import Plateau.Salles.CaseNormale;
+import Plateau.Salles.Mur;
 
 import java.util.Observable;
 

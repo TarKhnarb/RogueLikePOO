@@ -1,17 +1,16 @@
-package modele.plateau;
+package Plateau.Hero;
 
 
 
 public class Inventaire{
 
-    /************************
-     * Enumération: Element *
-     ************************/
+        /************************
+         * Enumération: Element *
+         ************************/
     public enum Element{
 
         Cle,
-        test1,
-        test2,
+        Capsule,
         ALL
     }
         /*************
@@ -36,7 +35,7 @@ public class Inventaire{
 
         for(int i = 0; i < Element.ALL.ordinal(); ++i){
 
-            inventaire[i] = 0;
+            inventaire[i] = 2;
         }
     }
 

@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package modele.plateau;
+package Plateau.Hero;
+
+import Plateau.Direction;
+import Plateau.Jeu;
 
 /**
  * Héros du jeu
@@ -18,17 +21,19 @@ public class Heros{
 
     private Jeu jeu;
     private Inventaire inventaire;
+    private Direction direction;
 
         /****************
          * Constructeur *
          ****************/
     public Heros(Jeu jeu, int x, int y){
 
-        this.jeu = jeu;
         this.x = x;
         this.y = y;
+        this.jeu = jeu;
 
-        inventaire = new Inventaire();
+        this.inventaire = new Inventaire();
+        this.direction = Direction.Bas;
     }
 
         /********
@@ -55,54 +60,65 @@ public class Heros{
         return inventaire;
     }
 
+        /****************
+         * GetDirection *
+         ****************/
+    public Direction getDirection(){
+
+        return direction;
+    }
         /********
          * Haut *
          ********/
-    public void haut(){
+    public void haut() throws Exception{
 
         if(traversable(x, y-1)){
 
             --y;
+            direction = Direction.Haut;
         }
     }
 
         /**********
          * Droite *
          **********/
-    public void droite(){
+    public void droite() throws Exception{
 
         if(traversable(x+1, y)){
 
             ++x;
+            direction = Direction.Droite;
         }
     }
 
         /*******
          * Bas *
          *******/
-    public void bas(){
+    public void bas() throws Exception {
 
         if(traversable(x, y+1)){
 
             ++y;
+            direction = Direction.Bas;
         }
     }
 
         /**********
          * Gauche *
          **********/
-    public void gauche(){
+    public void gauche() throws Exception{
 
         if(traversable(x-1, y)){
 
             --x;
+            direction = Direction.Gauche;
         }
     }
 
         /***************
          * Traversable *
          ***************/
-    private boolean traversable(int x, int y){
+    private boolean traversable(int x, int y) throws Exception{
 
         if((x > 0) && (x < jeu.SIZE_X) && (y > 0) && (y < jeu.SIZE_Y)){
 
