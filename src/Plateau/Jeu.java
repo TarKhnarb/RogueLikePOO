@@ -5,10 +5,10 @@
  */
 package Plateau;
 
-import Plateau.Salles.EntiteStatique;
+import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Hero.Heros;
-import Plateau.Salles.CaseNormale;
-import Plateau.Salles.Mur;
+import Plateau.Salles.Cases.CaseNormale;
+import Plateau.Salles.Cases.Mur;
 
 import java.util.Observable;
 

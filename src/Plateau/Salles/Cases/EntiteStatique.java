@@ -1,4 +1,4 @@
-package Plateau.Salles;
+package Plateau.Salles.Cases;
 
 import Plateau.Jeu;
 

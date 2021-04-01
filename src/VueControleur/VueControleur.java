@@ -15,7 +15,9 @@ import javax.swing.*;
 
 import Plateau.Jeu;
 import Plateau.Hero.*;
-import Plateau.Salles.*;
+import Plateau.Salles.Cases.CaseNormale;
+import Plateau.Salles.Cases.EntiteStatique;
+import Plateau.Salles.Cases.Mur;
 
 
 /** Cette classe a deux fonctions :
