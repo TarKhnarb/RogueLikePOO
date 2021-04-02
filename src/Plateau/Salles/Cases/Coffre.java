@@ -14,12 +14,21 @@ public class Coffre extends EntiteStatique{
         /****************
          * Constructeur *
          ****************/
-    public Coffre(Jeu jeu, EtatSerrure etat, Inventaire inventaire){
+    public Coffre(Jeu jeu, EtatSerrure etat){
 
         super(jeu);
 
         this.etat = etat;
-        this.inventaire = inventaire;
+
+        remplirAleatoirementCoffre();
+    }
+
+        /******************************
+         * RemplirAleatoirementCoffre *
+         ******************************/
+    private void remplirAleatoirementCoffre() {
+
+        // TODO faire en sorte que l'inventaire du coffre seremplisse avec des quantités aléatoires
     }
 
         /***********

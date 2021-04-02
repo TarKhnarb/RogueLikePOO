@@ -94,7 +94,7 @@ public class Jeu extends Observable implements Runnable{
 
                 if(grilleEntitesStatiques[x][y] == null){
 
-                    grilleEntitesStatiques[x][y] = new CaseNormale(this);
+                    grilleEntitesStatiques[x][y] = new CaseNormale(this, false);
                 }
             }
         }

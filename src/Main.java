@@ -1,4 +1,5 @@
 
+import Plateau.Salles.Etage;
 import VueControleur.VueControleur;
 import Plateau.Jeu;
 
@@ -21,5 +22,22 @@ public class Main{
         
         vc.setVisible(true);
         jeu.start();
+
+
+        Etage etage = null;
+        try{
+
+            etage = new Etage(jeu, 11, 5, 15);
+        }
+        catch (Exception e){
+
+            e.printStackTrace();
+        }
+
+        assert etage != null;
+        etage.genererEtage(0);
+
+        System.out.print(etage.toString());
+
     }
 }
