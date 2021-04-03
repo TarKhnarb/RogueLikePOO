@@ -13,6 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Hero.*;
@@ -32,10 +33,9 @@ public class VueControleur extends JFrame implements Observer{
          *************/
     private Jeu jeu; // référence sur une classe de modèle : permet d'accéder aux données du modèle pour le rafraichissement, permet de communiquer les actions clavier (ou souris)
 
-    private int sizeX; // taille de la grille affichée
-    private int sizeY;
+    private Taille size; //Taille de la grille à afficher
 
-    // icones affichées dans la grille
+        // icones affichées dans la grille
     private ImageIcon[] icoHero;
     private ImageIcon icoCaseNormale;
     private ImageIcon icoMur;
@@ -49,8 +49,7 @@ public class VueControleur extends JFrame implements Observer{
          ****************/
     public VueControleur(Jeu jeu){
 
-        sizeX = this.jeu.SIZE_X;
-        sizeY = this.jeu.SIZE_Y;
+        size = this.jeu.SIZE;
         this.jeu = jeu;
 
         chargerLesIcones();
@@ -73,7 +72,7 @@ public class VueControleur extends JFrame implements Observer{
                     case KeyEvent.VK_LEFT:
                         try{
 
-                            jeu.getHeros().gauche();
+                            jeu.getHeros().bouger(Direction.Gauche);
                         }
                         catch(Exception exception){
 
@@ -84,7 +83,7 @@ public class VueControleur extends JFrame implements Observer{
                     case KeyEvent.VK_RIGHT:
                         try{
 
-                            jeu.getHeros().droite();
+                            jeu.getHeros().bouger(Direction.Droite);
                         }
                         catch(Exception exception){
 
@@ -95,7 +94,7 @@ public class VueControleur extends JFrame implements Observer{
                     case KeyEvent.VK_DOWN:
                         try{
 
-                            jeu.getHeros().bas();
+                            jeu.getHeros().bouger(Direction.Bas);
                         }
                         catch(Exception exception){
 
@@ -106,7 +105,7 @@ public class VueControleur extends JFrame implements Observer{
                     case KeyEvent.VK_UP:
                         try{
 
-                            jeu.getHeros().haut();
+                            jeu.getHeros().bouger(Direction.Haut);
                         }
                         catch(Exception exception){
 
@@ -195,13 +194,13 @@ public class VueControleur extends JFrame implements Observer{
          ****************/
     private void placerGrille(JPanel panel){
 
-        JComponent grilleJLabels = new JPanel(new GridLayout(sizeY, sizeX)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
+        JComponent grilleJLabels = new JPanel(new GridLayout(size.getY(), size.getX())); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
 
-        tabJLabel = new JLabel[sizeX][sizeY];
+        tabJLabel = new JLabel[size.getX()][size.getY()];
 
-        for(int y = 0; y < sizeY; ++y){
+        for(int y = 0; y < size.getY(); ++y){
 
-            for(int x = 0; x < sizeX; ++x){
+            for(int x = 0; x < size.getX(); ++x){
 
                 JLabel jlab = new JLabel();
                 tabJLabel[x][y] = jlab; // on conserve les cases graphiques dans tabJLabel pour avoir un accès pratique à celles-ci (voir mettreAJourAffichage() )
@@ -244,9 +243,9 @@ public class VueControleur extends JFrame implements Observer{
          *********************/
     private void mettreAJourGrille(){
 
-        for(int x = 0; x < sizeX; ++x){
+        for(int x = 0; x < size.getX(); ++x){
 
-            for(int y = 0; y < sizeY; ++y){
+            for(int y = 0; y < size.getY(); ++y){
 
                 EntiteStatique e = jeu.getEntite(x, y);
 

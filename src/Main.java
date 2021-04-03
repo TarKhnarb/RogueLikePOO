@@ -1,7 +1,10 @@
 
 import Plateau.Salles.Etage;
+import Plateau.Salles.Partie;
 import VueControleur.VueControleur;
 import Plateau.Jeu;
+
+import java.io.FileNotFoundException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -23,7 +26,8 @@ public class Main{
         vc.setVisible(true);
         jeu.start();
 
-
+            // Tests d'un étage seul
+        /*
         Etage etage = null;
         try{
 
@@ -35,9 +39,32 @@ public class Main{
         }
 
         assert etage != null;
-        etage.genererEtage(0);
+        try{
+
+            etage.genererEtage(0);
+        }
+        catch (Exception e){
+
+            e.printStackTrace();
+        }
 
         System.out.print(etage.toString());
+*/
 
+            // Test d'une partie
+        Partie partie = null;
+        try{
+
+            partie = new Partie(jeu);
+        }
+        catch (FileNotFoundException e){
+
+            e.printStackTrace();
+        }
+
+        assert partie != null;
+        System.out.println(partie.infoDebug());
+        partie.changerEtage();
+        partie.changerEtage();
     }
 }

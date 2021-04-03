@@ -50,16 +50,24 @@ public class Salle{
     private Taille taille;
     private Jeu jeu;
 
-    public Salle(Type type, int x, int y, Jeu jeu){
+
+        /****************
+         * Constructeur *
+         ****************/
+    public Salle(Type type, Taille taille, Jeu jeu){
 
         this.type = type;
-        this.taille = new Taille(x, y);
+        this.taille = taille;
         this.jeu = jeu;
 
         this.grille = new EntiteStatique[taille.getX()][taille.getY()];
         this.portes = new Porte[4];
     }
 
+
+        /************
+         * GetClass *
+         ************/
     private EntiteStatique getClass(TypeCase type, Direction direction){
 
         switch(type){
@@ -90,6 +98,9 @@ public class Salle{
         }
     }
 
+        /*********************
+         * GetDirectionPorte *
+         *********************/
     private Direction getDirectionPorte(int x, int y){
 
         if(x == 0){
@@ -114,10 +125,14 @@ public class Salle{
         }
     }
 
+
+        /***************
+         * PlacerCases *
+         ***************/
     private void placerCases(){
 
         int x = 0, y = 0;
-        try(FileInputStream inputStream = new FileInputStream("data/Salles/" + type.toString() + ".salle");
+        try(FileInputStream inputStream = new FileInputStream("data/Salles/Salle_" + this.type.name() + ".salle");
             Scanner scanner = new Scanner(inputStream)){
 
             scanner.useDelimiter(" \n");
@@ -128,7 +143,7 @@ public class Salle{
 
                 valeur = scanner.next();
                 ++x;
-                if(x == taille.getX() -1){
+                if(x == taille.getX() - 1){
 
                     x = 0;
                     ++y;
@@ -143,22 +158,35 @@ public class Salle{
         }
     }
 
+        /*************
+         * GetGrille *
+         *************/
     public EntiteStatique[][] getGrille(){
 
         return grille;
     }
 
+        /***********
+         * GetType *
+         ***********/
     public Type getType(){
 
         return type;
     }
 
+
+        /****************
+         * AjouterPorte *
+         ****************/
     public void ajouterPorte(Direction direction, EtatSerrure etat){
 
         portes[direction.ordinal()] = new Porte(jeu, direction, etat);
     }
 
-    public int affecteType(int seed) throws Exception {
+        /****************
+         * AffecterType *
+         ****************/
+    public int affecterType(int seed) throws Exception {
 
         boolean haut = false;
         boolean droite = false;

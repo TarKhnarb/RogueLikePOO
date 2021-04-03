@@ -5,6 +5,7 @@
  */
 package Plateau.Hero;
 
+import Outils.Position;
 import Plateau.Direction;
 import Plateau.Jeu;
 
@@ -16,8 +17,7 @@ public class Heros{
         /*************
          * Variables *
          *************/
-    private int x;
-    private int y;
+    private Position position;
 
     private Jeu jeu;
     private Inventaire inventaire;
@@ -26,10 +26,9 @@ public class Heros{
         /****************
          * Constructeur *
          ****************/
-    public Heros(Jeu jeu, int x, int y){
+    public Heros(Jeu jeu, Position position){
 
-        this.x = x;
-        this.y = y;
+        this.position = position;
         this.jeu = jeu;
 
         this.inventaire = new Inventaire();
@@ -41,7 +40,7 @@ public class Heros{
          ********/
     public int getX(){
 
-        return x;
+        return position.getX();
     }
 
         /********
@@ -49,7 +48,7 @@ public class Heros{
          ********/
     public int getY(){
 
-        return y;
+        return position.getY();
     }
 
         /*****************
@@ -67,66 +66,53 @@ public class Heros{
 
         return direction;
     }
+
         /********
-         * Haut *
+         * Move *
          ********/
-    public void haut() throws Exception{
+    public void bouger(Direction direction) throws Exception{
 
-        if(traversable(x, y-1)){
+        this.direction = direction;
+        if(traversable(this.direction)){
 
-            --y;
-            direction = Direction.Haut;
-        }
-    }
-
-        /**********
-         * Droite *
-         **********/
-    public void droite() throws Exception{
-
-        if(traversable(x+1, y)){
-
-            ++x;
-            direction = Direction.Droite;
-        }
-    }
-
-        /*******
-         * Bas *
-         *******/
-    public void bas() throws Exception {
-
-        if(traversable(x, y+1)){
-
-            ++y;
-            direction = Direction.Bas;
-        }
-    }
-
-        /**********
-         * Gauche *
-         **********/
-    public void gauche() throws Exception{
-
-        if(traversable(x-1, y)){
-
-            --x;
-            direction = Direction.Gauche;
+            position.move(this.direction);
         }
     }
 
         /***************
          * Traversable *
          ***************/
-    private boolean traversable(int x, int y) throws Exception{
+    private boolean traversable(Direction dir) throws Exception{
 
-        if((x > 0) && (x < jeu.SIZE_X) && (y > 0) && (y < jeu.SIZE_Y)){
+        switch(dir){
 
-            return jeu.getEntite(x, y).traversable();
-        }
-        else{
+            case Haut:
+                if(0 < (position.getY() - 1)){
 
-            return false;
+                    return jeu.getEntite(position.getX(), (position.getY() - 1)).traversable();
+                }
+
+            case Droite:
+                if((position.getX() + 1) < jeu.SIZE.getX()){
+
+                    return jeu.getEntite((position.getX() + 1), position.getY()).traversable();
+                }
+
+            case Bas:
+                if((position.getY() + 1) < jeu.SIZE.getY()){
+
+                    return jeu.getEntite(position.getX(), (position.getY() + 1)).traversable();
+                }
+
+            case Gauche:
+                if(0 < (position.getX() - 1)){
+
+                    return jeu.getEntite((position.getX() - 1), position.getY()).traversable();
+                }
+
+            case All:
+            default:
+                return false;
         }
     }
 }

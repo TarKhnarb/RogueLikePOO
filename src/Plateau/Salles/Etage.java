@@ -1,15 +1,15 @@
 package Plateau.Salles;
 
-import Outils.Taille;
+import Outils.Position;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Salles.Cases.EtatSerrure;
 
 public class Etage{
 
-    /*************
-     * Variables *
-     *************/
+        /*************
+         * Variables *
+         *************/
     private Jeu jeu;
     private int taille;
     private Salle[][] etage;
@@ -17,7 +17,9 @@ public class Etage{
     private final int minSalle;
     private final int maxSalle;
 
-
+        /****************
+         * Constructeur *
+         ****************/
     public Etage(Jeu jeu, int taille, int minSalles, int maxSalles) throws Exception{
 
         this.jeu = jeu;
@@ -35,15 +37,18 @@ public class Etage{
         }
     }
 
-    public int genererEtage(int numeroEtage){
+        /*****************
+         * GenerateEtage *
+         *****************/
+    public int genererEtage(int numeroEtage) throws Exception{
 
         setSeed();
         int nombreSalles = (int)(Math.random() * (maxSalle - minSalle + 1)) + minSalle;
-        int compteurSalles = 1; // Salle de départ déja posée
+        int compteurSalles = 2; // Salle de départ et fin déja comptées
         int entropy = 2;        // ATTENTION mini = 1
         int milieu = (taille - 1)/2;
 
-        System.out.println("Nb salles: " + nombreSalles);
+        System.out.println("Nb salles: " + (nombreSalles + 1));
 
         while(nombreSalles != compteurSalles){
 
@@ -59,7 +64,7 @@ public class Etage{
 
                         if((compteurSalles < nombreSalles - 1) && ((int)(Math.random()*entropy) == (entropy - 1))){ // Place une salle seulement si le random est différent de 0
 
-                            etage[i][milieu - k] = new Salle(Salle.Type.None, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                            etage[i][milieu - k] = new Salle(Salle.Type.None, Jeu.SIZE,  jeu);
                             ++compteurSalles;
                         }
                     }
@@ -69,7 +74,7 @@ public class Etage{
 
                     if((compteurSalles < nombreSalles - 1) && ((int)(Math.random()*entropy) == (entropy - 1))){ // Place une salle seulement si le random est différent de 0
 
-                        etage[milieu - k][milieu - k] = new Salle(Salle.Type.None, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                        etage[milieu - k][milieu - k] = new Salle(Salle.Type.None, Jeu.SIZE,  jeu);
                         ++compteurSalles;
                     }
                 }
@@ -80,7 +85,7 @@ public class Etage{
 
                         if((compteurSalles < nombreSalles - 1) && ((int)(Math.random()*entropy) == (entropy - 1))){ // Place une salle seulement si le random est différent de 0
 
-                            etage[milieu + k][j] = new Salle(Salle.Type.None, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                            etage[milieu + k][j] = new Salle(Salle.Type.None, Jeu.SIZE,  jeu);
                             ++compteurSalles;
                         }
                     }
@@ -92,7 +97,7 @@ public class Etage{
 
                         if((compteurSalles < nombreSalles - 1) && ((int)(Math.random()*entropy) == (entropy - 1))){ // Place une salle seulement si le random est différent de 0
 
-                            etage[milieu - k][j] = new Salle(Salle.Type.None, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                            etage[milieu - k][j] = new Salle(Salle.Type.None, Jeu.SIZE,  jeu);
                             ++compteurSalles;
                         }
                     }
@@ -104,7 +109,7 @@ public class Etage{
 
                         if((compteurSalles < nombreSalles - 1) && ((int)(Math.random()*entropy) == (entropy - 1))){ // Place une salle seulement si le random est différent de 0
 
-                            etage[i][milieu + k] = new Salle(Salle.Type.None, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                            etage[i][milieu + k] = new Salle(Salle.Type.None, Jeu.SIZE,  jeu);
                             ++compteurSalles;
                         }
                     }
@@ -119,7 +124,7 @@ public class Etage{
 
                             if((int)(Math.random()*entropy) == (entropy - 1)){
 
-                                etage[i][milieu - k] = new Salle(Salle.Type.Fin, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                                etage[i][milieu - k] = new Salle(Salle.Type.Fin, Jeu.SIZE,  jeu);
                                 ++compteurSalles;
                             }
                         }
@@ -129,7 +134,7 @@ public class Etage{
 
                         if((int)(Math.random()*entropy) == (entropy - 1)){
 
-                            etage[milieu - k][milieu - k] = new Salle(Salle.Type.Fin, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                            etage[milieu - k][milieu - k] = new Salle(Salle.Type.Fin, Jeu.SIZE,  jeu);
                             ++compteurSalles;
                         }
                     }
@@ -140,7 +145,7 @@ public class Etage{
 
                             if((int)(Math.random()*entropy) == (entropy - 1)){
 
-                                etage[milieu + k][j] = new Salle(Salle.Type.Fin, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                                etage[milieu + k][j] = new Salle(Salle.Type.Fin, Jeu.SIZE,  jeu);
                                 ++compteurSalles;
                             }
                         }
@@ -152,7 +157,7 @@ public class Etage{
 
                             if((int)(Math.random()*entropy) == (entropy - 1)){
 
-                                etage[milieu - k][j] = new Salle(Salle.Type.Fin, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                                etage[milieu - k][j] = new Salle(Salle.Type.Fin, Jeu.SIZE,  jeu);
                                 ++compteurSalles;
                             }
                         }
@@ -164,7 +169,7 @@ public class Etage{
 
                             if((int)(Math.random()*entropy) == (entropy - 1)){
 
-                                etage[i][milieu + k] = new Salle(Salle.Type.Fin, Jeu.SIZE_X, Jeu.SIZE_Y,  jeu);
+                                etage[i][milieu + k] = new Salle(Salle.Type.Fin, Jeu.SIZE,  jeu);
                                 ++compteurSalles;
                             }
                         }
@@ -178,20 +183,44 @@ public class Etage{
         return ++numeroEtage;
     }
 
+        /************
+         * GetSalle *
+         ************/
+    public Salle getSalle(Position position) throws Exception{
+
+        if(etage[position.getX()][position.getY()] != null){
+
+            return etage[position.getX()][position.getY()];
+        }
+        else{
+
+            throw new Exception("Etage::getSalle - La salle souhaité n'existe pas");
+        }
+    }
+
+        /***********
+         * SetSeed *
+         ***********/
     private void setSeed(){
 
         seed = (int) (Math.random() * Integer.MAX_VALUE);
     }
 
+        /*********
+         * Reset *
+         *********/
     private void reset(int numeroEtage){
 
         etage = new Salle[taille][taille];
 
         int mid = (taille - 1)/2;
 
-        etage[mid][mid] = new Salle(Salle.Type.Debut, Jeu.SIZE_X, Jeu.SIZE_Y, jeu);
+        etage[mid][mid] = new Salle(Salle.Type.Debut, Jeu.SIZE, jeu);
     }
 
+        /********************
+         * CheckSalleAutour *
+         ********************/
     private boolean checkSalleAutour(int x, int y){ // regarde si il y a qu'une seule salle autour d'un case
 
         int count = 0;
@@ -230,6 +259,9 @@ public class Etage{
         return (count == 1);
     }
 
+        /****************
+         * PlacerPortes *
+         ****************/
     private void placerPortes(){
 
         for(int y = 0; y < taille; ++y){
@@ -241,33 +273,31 @@ public class Etage{
                     if((y > 0) && (etage[x][y - 1] != null)){   // Salle en Haut
 
                         etage[x][y].ajouterPorte(Direction.Haut, EtatSerrure.Ferme);
-                        System.out.print("H ");
                     }
 
                     if((x + 1 < taille) && (etage[x + 1][y] != null)){ // Salle à Droite
 
                         etage[x][y].ajouterPorte(Direction.Droite, EtatSerrure.Ferme);
-                        System.out.print("D ");
                     }
 
                     if((y + 1 < taille) && (etage[x][y + 1] != null)){ // Salle en Bas
 
                         etage[x][y].ajouterPorte(Direction.Bas, EtatSerrure.Ferme);
-                        System.out.print("B ");
                     }
 
                     if((x > 0) && (etage[x - 1][y] != null)){ // Salle à Gauche
 
                         etage[x][y].ajouterPorte(Direction.Gauche, EtatSerrure.Ferme);
-                        System.out.print("G ");
                     }
-                    System.out.print("\n");
                 }
             }
         }
     }
 
-    private void affecterTypeSalles(){
+        /**********************
+         * AffecterTypeSalles *
+         **********************/
+    private void affecterTypeSalles() throws Exception{
 
         for(int y = 0; y < taille; ++y){
 
@@ -277,23 +307,16 @@ public class Etage{
 
                     if(etage[x][y].getType() == Salle.Type.None){
 
-                        try{
-
-                            System.out.println(etage[x][y].affecteType(seed) + " / " + etage[x][y].getType().name() + " / " + x + " / " + y);
-                           // System.out.println(etage[x][y].getType().name() + " / " + x + " / " + y);
-                        }
-                        catch(Exception e) {
-
-                            //System.out.println(x + " / " + y);
-                            e.printStackTrace();
-                        }
+                        etage[x][y].affecterType(seed);
                     }
                 }
             }
         }
     }
 
-
+        /*************
+         * ToString *
+         *************/
     @Override
     public String toString(){
 

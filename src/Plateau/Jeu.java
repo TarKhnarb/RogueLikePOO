@@ -5,6 +5,8 @@
  */
 package Plateau;
 
+import Outils.Position;
+import Outils.Taille;
 import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Hero.Heros;
 import Plateau.Salles.Cases.CaseNormale;
@@ -18,13 +20,13 @@ public class Jeu extends Observable implements Runnable{
         /*************
          * Variables *
          *************/
-    public static final int SIZE_X = 21;
-    public static final int SIZE_Y = 11;
+
+    public static final Taille SIZE = new Taille(21, 11);
 
     private int pause = 200; // période de rafraichissement
 
     private Heros heros;
-    private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE_X][SIZE_Y];
+    private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE.getX()][SIZE.getY()];
 
         /****************
          * Constructeur *
@@ -55,7 +57,7 @@ public class Jeu extends Observable implements Runnable{
          *************/
 	public EntiteStatique getEntite(int x, int y){
 
-		if((x < 0) || (x >= SIZE_X) || (y < 0) || (y >= SIZE_Y)){
+		if((x < 0) || (x >= SIZE.getX()) || (y < 0) || (y >= SIZE.getY())){
 
 			// L'entité demandée est en-dehors de la grille
 			return null;
@@ -69,7 +71,7 @@ public class Jeu extends Observable implements Runnable{
          ****************************/
     private void initialisationDesEntites(){
 
-        heros = new Heros(this, 10, 5);
+        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX(), SIZE.getY())));
 
         // murs extérieurs horizontaux
         for(int x = 0; x < 21; ++x){
@@ -88,9 +90,9 @@ public class Jeu extends Observable implements Runnable{
         ajouteEntiteStatique(new Mur(this), 2, 6);
         ajouteEntiteStatique(new Mur(this), 3, 6);
 
-        for(int x = 0; x < SIZE_X; ++x){
+        for(int x = 0; x < SIZE.getX(); ++x){
 
-            for(int y = 0; y < SIZE_Y; ++y){
+            for(int y = 0; y < SIZE.getY(); ++y){
 
                 if(grilleEntitesStatiques[x][y] == null){
 
