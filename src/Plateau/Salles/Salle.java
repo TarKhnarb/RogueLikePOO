@@ -120,7 +120,7 @@ public class Salle{
         try(FileInputStream inputStream = new FileInputStream("data/Salles/" + type.toString() + ".salle");
             Scanner scanner = new Scanner(inputStream)){
 
-            scanner.useDelimiter(" \\n");
+            scanner.useDelimiter(" \n");
 
             String valeur;
 
@@ -158,7 +158,7 @@ public class Salle{
         portes[direction.ordinal()] = new Porte(jeu, direction, etat);
     }
 
-    public void affecteType(int seed) throws Exception {
+    public int affecteType(int seed) throws Exception {
 
         boolean haut = false;
         boolean droite = false;
@@ -167,12 +167,10 @@ public class Salle{
 
         int cpt = 0;
 
-        Direction tmpDir;
         for(int i = 0; i < 4; ++i){
 
             if(portes[i] != null){
 
-                tmpDir = portes[i].getDirection();
                 switch(i){
 
                     case 0:
@@ -208,15 +206,15 @@ public class Salle{
 
                     type = Type.H;
                 }
-                else if(droite){
+                if(droite){
 
                     type = Type.D;
                 }
-                else if(bas){
+                if(bas){
 
                     type = Type.B;
                 }
-                else if(gauche){
+                if(gauche){
 
                     type = Type.G;
                 }
@@ -228,23 +226,23 @@ public class Salle{
 
                     type = Type.HB;
                 }
-                else if(gauche && droite){
+                if(gauche && droite){
 
                     type = Type.GD;
                 }
-                else if(haut && droite){
+                if(haut && droite){
 
                     type = Type.HD;
                 }
-                else if(droite && bas){
+                if(droite && bas){
 
                     type = Type.DB;
                 }
-                else if(bas && gauche){
+                if(bas && gauche){
 
                     type = Type.BG;
                 }
-                else if(haut && gauche){
+                if(haut && gauche){
 
                     type = Type.HG;
                 }
@@ -256,15 +254,15 @@ public class Salle{
 
                     type = Type.DBG;
                 }
-                else if(!droite){
+                if(!droite){
 
                     type = Type.HBG;
                 }
-                else if(!bas){
+                if(!bas){
 
                     type = Type.HDG;
                 }
-                else if(!gauche){
+                if(!gauche){
 
                     type = Type.HDB;
                 }
@@ -275,5 +273,7 @@ public class Salle{
                 type = Type.HDBG;
                 break;
         }
+
+        return cpt;
     }
 }

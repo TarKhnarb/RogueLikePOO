@@ -236,27 +236,32 @@ public class Etage{
 
             for(int x = 0; x < taille; ++x){
 
-                if(etage[x][y] != null){
+                if(etage[x][y] != null){ // La salle à été placée
 
-                    if((x > 0) && (etage[x - 1][y] != null)){ // Gauche
-
-                        etage[x][y].ajouterPorte(Direction.Gauche, EtatSerrure.Ferme);
-                    }
-
-                    if((y > 0) && (etage[x][y - 1] != null)){   // Haut
+                    if((y > 0) && (etage[x][y - 1] != null)){   // Salle en Haut
 
                         etage[x][y].ajouterPorte(Direction.Haut, EtatSerrure.Ferme);
+                        System.out.print("H ");
                     }
 
-                    if((x + 1 < taille) && (etage[x + 1][y] != null)){ // Droite
+                    if((x + 1 < taille) && (etage[x + 1][y] != null)){ // Salle à Droite
 
                         etage[x][y].ajouterPorte(Direction.Droite, EtatSerrure.Ferme);
+                        System.out.print("D ");
                     }
 
-                    if((y + 1 > taille) && (etage[x][y + 1] != null)){ // Bas
+                    if((y + 1 < taille) && (etage[x][y + 1] != null)){ // Salle en Bas
 
                         etage[x][y].ajouterPorte(Direction.Bas, EtatSerrure.Ferme);
+                        System.out.print("B ");
                     }
+
+                    if((x > 0) && (etage[x - 1][y] != null)){ // Salle à Gauche
+
+                        etage[x][y].ajouterPorte(Direction.Gauche, EtatSerrure.Ferme);
+                        System.out.print("G ");
+                    }
+                    System.out.print("\n");
                 }
             }
         }
@@ -274,8 +279,8 @@ public class Etage{
 
                         try{
 
-                            etage[x][y].affecteType(seed);
-                            System.out.println(etage[x][y].getType().name() + " / " + x + " / " + y);
+                            System.out.println(etage[x][y].affecteType(seed) + " / " + etage[x][y].getType().name() + " / " + x + " / " + y);
+                           // System.out.println(etage[x][y].getType().name() + " / " + x + " / " + y);
                         }
                         catch(Exception e) {
 
@@ -367,11 +372,11 @@ public class Etage{
                             break;
 
                         case HDG:
-                            retour += "N";
+                            retour += "O";
                             break;
 
                         case HDBG:
-                            retour += "O";
+                            retour += "P";
                             break;
 
                         case None:
