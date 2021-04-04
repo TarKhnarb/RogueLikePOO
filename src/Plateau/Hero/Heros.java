@@ -79,6 +79,33 @@ public class Heros{
         }
     }
 
+    public void changerSalle(Direction direction) throws Exception{
+
+        switch(direction){
+
+            case Haut:
+                position.setPosition((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 2); // Bas
+                break;
+
+            case Droite:
+                position.setPosition(1, (Jeu.SIZE.getY() - 1)/2); //Gauche
+                break;
+
+            case Bas:
+                position.setPosition((Jeu.SIZE.getX() - 1)/2, 1); //Haut
+                break;
+
+            case Gauche:
+                position.setPosition(Jeu.SIZE.getX() - 2, (Jeu.SIZE.getY() - 1)/2);
+                break;
+
+            case All:
+            default:
+
+                throw new Exception("Changement de salle impossible,  la direction n'a pas été affectée correctement");
+        }
+    }
+
         /***************
          * Traversable *
          ***************/
@@ -87,7 +114,7 @@ public class Heros{
         switch(dir){
 
             case Haut:
-                if(0 < (position.getY() - 1)){
+                if(0 <= (position.getY() - 1)){
 
                     return jeu.getEntite(position.getX(), (position.getY() - 1)).traversable();
                 }
@@ -105,7 +132,7 @@ public class Heros{
                 }
 
             case Gauche:
-                if(0 < (position.getX() - 1)){
+                if(0 <= (position.getX() - 1)){
 
                     return jeu.getEntite((position.getX() - 1), position.getY()).traversable();
                 }

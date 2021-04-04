@@ -20,4 +20,22 @@ public class CaseVide extends EntiteStatique{
 
         return false;
     }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString(){
+
+        return "2";
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase(){
+
+        return TypeCase.Vide;
+    }
 }

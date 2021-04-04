@@ -93,7 +93,8 @@ public class Salle{
             case Feu:
                 return new CaseUnique(jeu, true);
 
-            case Mur: default:
+            case Mur:
+            default:
                 return new Mur(jeu);
         }
     }
@@ -125,36 +126,64 @@ public class Salle{
         }
     }
 
+    private void placePortes(){
+
+        for(int i = 0; i < Direction.All.ordinal(); ++i){
+
+            if(portes[i] != null){
+
+                switch(Direction.values()[i]){
+
+                    case Haut:
+                        grille[(jeu.SIZE.getX() - 1)/2][0] = portes[i];
+                        break;
+
+                    case Droite:
+                        grille[Jeu.SIZE.getX() - 1][(Jeu.SIZE.getY() - 1)/2] = portes[i];
+                        break;
+
+                    case Bas:
+                        grille[(jeu.SIZE.getX() - 1)/2][jeu.SIZE.getY() - 1] = portes[i];
+                        break;
+
+                    case Gauche:
+                        grille[0][(Jeu.SIZE.getY() - 1)/2] = portes[i];
+                        break;
+
+                    case All:
+                    default:
+                        break;
+                }
+            }
+        }
+    }
 
         /***************
          * PlacerCases *
          ***************/
-    private void placerCases(){
+    public void placerCases() throws FileNotFoundException{
 
-        int x = 0, y = 0;
-        try(FileInputStream inputStream = new FileInputStream("data/Salles/Salle_" + this.type.name() + ".salle");
-            Scanner scanner = new Scanner(inputStream)){
 
-            scanner.useDelimiter(" \n");
+        Scanner scanner = new Scanner(new File("data/Salles/Salle_" + this.type.name() + ".salle"));
 
-            String valeur;
+        for(int y = 0; y < Jeu.SIZE.getY(); ++y){
 
-            while(scanner.hasNext()){
+            for(int x = 0; x < Jeu.SIZE.getX(); ++x){
 
-                valeur = scanner.next();
-                ++x;
-                if(x == taille.getX() - 1){
+                if(scanner.hasNextInt()){
 
-                    x = 0;
-                    ++y;
+                    grille[x][y] = getClass(TypeCase.values()[scanner.nextInt()], getDirectionPorte(x, y));
                 }
+                else{
 
-                grille[x][y] = getClass(TypeCase.values()[Integer.parseInt(valeur)], getDirectionPorte(x, y));
+                    grille[x][y] = new Mur(jeu);
+                }
             }
         }
-        catch(IOException e){
 
-            e.printStackTrace();
+        if(type.equals(Type.Debut) || type.equals(Type.Fin)){
+
+            placePortes();
         }
     }
 
@@ -174,7 +203,6 @@ public class Salle{
         return type;
     }
 
-
         /****************
          * AjouterPorte *
          ****************/
@@ -186,7 +214,7 @@ public class Salle{
         /****************
          * AffecterType *
          ****************/
-    public int affecterType(int seed) throws Exception {
+    public int affecterType(int seed) throws Exception{
 
         boolean haut = false;
         boolean droite = false;
@@ -303,5 +331,33 @@ public class Salle{
         }
 
         return cpt;
+    }
+
+        /************
+         * ToString *
+         ************/
+    public String toString(){
+
+        String retour = "";
+
+        for(int y = 0; y < taille.getY(); ++y){
+
+            for(int x = 0; x < taille.getX(); ++x){
+
+                if(grille[x][y] != null){
+
+                    retour += grille[x][y].toString();
+                }
+                else{
+
+                    retour += "!";
+                }
+                //retour += ((grille[x][y] != null) ? grille[x][y].toString() : "!");
+            }
+
+            retour += "\n";
+        }
+
+        return retour;
     }
 }

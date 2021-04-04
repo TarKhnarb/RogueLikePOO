@@ -22,6 +22,9 @@ public class CaseUnique extends EntiteStatique{
         this.feu = feu;
     }
 
+        /***************
+         * EteindreFeu *
+         ***************/
     private void eteindreFeu() throws Exception{
 
         if(feu){
@@ -30,6 +33,7 @@ public class CaseUnique extends EntiteStatique{
             feu = false;
         }
     }
+
     /***************
      * Traversable *
      ***************/
@@ -37,5 +41,23 @@ public class CaseUnique extends EntiteStatique{
     public boolean traversable(){
 
         return !feu;
+    }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString(){
+
+        return (feu ? "5" : "1");
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase(){
+
+        return (feu ? TypeCase.Feu : TypeCase.Unique);
     }
 }

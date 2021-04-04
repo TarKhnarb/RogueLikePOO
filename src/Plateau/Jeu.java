@@ -9,9 +9,9 @@ import Outils.Position;
 import Outils.Taille;
 import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Hero.Heros;
-import Plateau.Salles.Cases.CaseNormale;
-import Plateau.Salles.Cases.Mur;
+import Plateau.Salles.Partie;
 
+import java.io.FileNotFoundException;
 import java.util.Observable;
 
 
@@ -26,7 +26,7 @@ public class Jeu extends Observable implements Runnable{
     private int pause = 200; // période de rafraichissement
 
     private Heros heros;
-    private EntiteStatique[][] grilleEntitesStatiques = new EntiteStatique[SIZE.getX()][SIZE.getY()];
+    private Partie partie; // TODO mutation de grilleEntitesStatiques avec la lecture de fichier
 
         /****************
          * Constructeur *
@@ -44,18 +44,31 @@ public class Jeu extends Observable implements Runnable{
         return heros;
     }
 
+    public Partie getPartie(){
+
+        return partie;
+    }
+
         /*************
          * GetGrille *
          *************/
     public EntiteStatique[][] getGrille(){
 
-        return grilleEntitesStatiques;
+        try{
+
+            return partie.getSalle().getGrille();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
 
         /*************
          * GetEntite *
          *************/
-	public EntiteStatique getEntite(int x, int y){
+	public EntiteStatique getEntite(int x, int y) throws Exception{
 
 		if((x < 0) || (x >= SIZE.getX()) || (y < 0) || (y >= SIZE.getY())){
 
@@ -63,43 +76,26 @@ public class Jeu extends Observable implements Runnable{
 			return null;
 		}
 
-		return grilleEntitesStatiques[x][y];
-	}
+        return partie.getSalle().getGrille()[x][y];
+    }
 
         /****************************
          * InitialisationDesEntites *
          ****************************/
     private void initialisationDesEntites(){
 
-        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX(), SIZE.getY())));
+        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));
 
-        // murs extérieurs horizontaux
-        for(int x = 0; x < 21; ++x){
+        try{
 
-            ajouteEntiteStatique(new Mur(this), x, 0);
-            ajouteEntiteStatique(new Mur(this), x, 10);
+            partie = new Partie(this);
+        }
+        catch(FileNotFoundException e){
+
+            e.printStackTrace();
         }
 
-        // murs extérieurs verticaux
-        for(int y = 1; y < 10; ++y){
-
-            ajouteEntiteStatique(new Mur(this), 0, y);
-            ajouteEntiteStatique(new Mur(this), 20, y);
-        }
-
-        ajouteEntiteStatique(new Mur(this), 2, 6);
-        ajouteEntiteStatique(new Mur(this), 3, 6);
-
-        for(int x = 0; x < SIZE.getX(); ++x){
-
-            for(int y = 0; y < SIZE.getY(); ++y){
-
-                if(grilleEntitesStatiques[x][y] == null){
-
-                    grilleEntitesStatiques[x][y] = new CaseNormale(this, false);
-                }
-            }
-        }
+        partie.changerEtage(); // Chargement du premier etage
     }
 
         /*********
@@ -129,13 +125,5 @@ public class Jeu extends Observable implements Runnable{
                 e.printStackTrace();
             }
         }
-    }
-
-        /*************************
-         * AjouterEntiteStatique *
-         *************************/
-    private void ajouteEntiteStatique(EntiteStatique e, int x, int y){
-
-        grilleEntitesStatiques[x][y] = e;
     }
 }

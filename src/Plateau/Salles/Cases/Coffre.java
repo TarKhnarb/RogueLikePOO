@@ -42,7 +42,7 @@ public class Coffre extends EntiteStatique{
         /*****************
          * GetInventaire *
          *****************/
-    //  TODO A adapter suivant commenton gère les coffres
+    //  TODO A adapter suivant comment on gère les coffres
     public Inventaire getInventaire(){
 
         return inventaire;
@@ -81,5 +81,23 @@ public class Coffre extends EntiteStatique{
     public boolean traversable() throws Exception{
 
         return ouvrirCoffre();
+    }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString(){
+
+        return "4";
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase(){
+
+        return TypeCase.Coffre;
     }
 }

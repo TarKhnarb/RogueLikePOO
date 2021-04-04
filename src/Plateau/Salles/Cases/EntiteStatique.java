@@ -24,4 +24,14 @@ public abstract class EntiteStatique{
          * Traversable *
          ***************/
     public abstract boolean traversable() throws Exception;
+
+        /************
+         * ToString *
+         ************/
+    public abstract String toString();
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    public abstract TypeCase getTypeCase();
 }

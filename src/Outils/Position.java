@@ -79,7 +79,7 @@ public class Position{
         switch(direction){
 
             case Haut:
-                if((y - 1) > zoneMin.getY()){
+                if((y - 1) >= zoneMin.getY()){
 
                     --y;
                     return true;
@@ -90,7 +90,7 @@ public class Position{
                 }
 
             case Droite:
-                if((x + 1) < zoneMax.getX()){
+                if((x + 1) <= zoneMax.getX()){
 
                     ++x;
                     return true;
@@ -101,7 +101,7 @@ public class Position{
                 }
 
             case Bas:
-                if((y + 1) < zoneMax.getY()){
+                if((y + 1) <= zoneMax.getY()){
 
                     ++y;
                     return true;
@@ -112,7 +112,7 @@ public class Position{
                 }
 
             case Gauche:
-                if((x - 1) > zoneMin.getX()){
+                if((x - 1) >= zoneMin.getX()){
 
                     --x;
                     return true;

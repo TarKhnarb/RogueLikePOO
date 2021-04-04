@@ -180,6 +180,7 @@ public class Etage{
 
         placerPortes();
         affecterTypeSalles();
+        etage[milieu][milieu].placerCases();
         return ++numeroEtage;
     }
 

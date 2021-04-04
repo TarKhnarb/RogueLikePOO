@@ -104,6 +104,9 @@ public class Partie{
 
             throw new Exception("Partie::changerSalle - VOUS NE POUVEZ PAS CHANGER DE SALLES");
         }
+
+        jeu.getHeros().changerSalle(direction);
+        etage.getSalle(positionEtage).placerCases();
     }
 
         /************
@@ -120,7 +123,7 @@ public class Partie{
     private void centrerPosition(){
 
         int centre= (tailleEtage - 1) / 2;
-        this.positionEtage = new Position(centre, centre, new Taille(0, 0), new Taille(tailleEtage, tailleEtage));
+        this.positionEtage = new Position(centre, centre, new Taille(0, 0), new Taille(tailleEtage - 1, tailleEtage - 1));
     }
 
         /********************
@@ -132,8 +135,6 @@ public class Partie{
         int cpt = 0;
 
         Scanner scanner = new Scanner(new File("data/Parties/Reglages.partie"));
-
-        //scanner.useDelimiter("\n");
 
         if(scanner.hasNextInt()){
 

@@ -1,6 +1,8 @@
 
+import Outils.Taille;
 import Plateau.Salles.Etage;
 import Plateau.Salles.Partie;
+import Plateau.Salles.Salle;
 import VueControleur.VueControleur;
 import Plateau.Jeu;
 
@@ -52,6 +54,7 @@ public class Main{
 */
 
             // Test d'une partie
+        /*
         Partie partie = null;
         try{
 
@@ -66,5 +69,6 @@ public class Main{
         System.out.println(partie.infoDebug());
         partie.changerEtage();
         partie.changerEtage();
+         */
     }
 }

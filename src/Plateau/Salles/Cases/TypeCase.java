@@ -11,7 +11,8 @@ public enum TypeCase{
     Coffre,     // 4: Coffre, traversable uniquement si le Hero à au moins un clé
     Cle,        // 5: Clé, case normale avec une clé dessus
     Unique,     // 6: Case à usage unique traversable une seul fois après s'enflamme
-    Feu         // 7: Case à usage unique enflammée, nécessite une capsule d'eau pour la retraverser
+    Feu,        // 7: Case à usage unique enflammée, nécessite une capsule d'eau pour la retraverser
+    All
 }
 
 /*

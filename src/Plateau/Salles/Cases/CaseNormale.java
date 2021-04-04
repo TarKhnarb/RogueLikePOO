@@ -20,6 +20,9 @@ public class CaseNormale extends EntiteStatique{
         this.cle = cle;
     }
 
+        /**********
+         * GetCle *
+         **********/
     private void getCle() throws Exception{
 
         if(cle){
@@ -28,6 +31,7 @@ public class CaseNormale extends EntiteStatique{
             cle = false;
         }
     }
+
         /***************
          * Traversable *
          ***************/
@@ -41,4 +45,24 @@ public class CaseNormale extends EntiteStatique{
 
         return true;
     }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString(){
+
+        return (cle ? "5" : "1");
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase(){
+
+        return (cle ? TypeCase.Cle : TypeCase.Normale);
+    }
+
+
 }

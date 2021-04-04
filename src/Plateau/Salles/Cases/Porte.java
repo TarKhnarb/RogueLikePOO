@@ -52,15 +52,14 @@ public class Porte extends EntiteStatique{
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
                 etat = EtatSerrure.Ouvert;
 
-                return true;
-            }
-            else{
-
                 return false;
             }
+
+            return false;
         }
         else{
 
+            jeu.getPartie().changerSalle(this.direction);
             return true;
         }
     }
@@ -74,5 +73,23 @@ public class Porte extends EntiteStatique{
         // TODO Voir quoi choisir entre les deux. voir même si ouvrirPorte() est correcte
         return ouvrirPorte();
         //return (etat.equals(EtatSerrure.Ouvert));
+    }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString() {
+
+        return "3";
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase() {
+
+        return TypeCase.Porte;
     }
 }

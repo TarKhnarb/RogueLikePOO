@@ -20,4 +20,22 @@ public class Mur extends EntiteStatique {
 
         return false;
     }
+
+        /************
+         * ToString *
+         ************/
+    @Override
+    public String toString() {
+
+        return "0";
+    }
+
+        /***************
+         * GetTypeCase *
+         ***************/
+    @Override
+    public TypeCase getTypeCase() {
+
+        return TypeCase.Mur;
+    }
 }

@@ -17,9 +17,7 @@ import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Hero.*;
-import Plateau.Salles.Cases.CaseNormale;
-import Plateau.Salles.Cases.EntiteStatique;
-import Plateau.Salles.Cases.Mur;
+import Plateau.Salles.Cases.*;
 
 
 /** Cette classe a deux fonctions :
@@ -36,10 +34,8 @@ public class VueControleur extends JFrame implements Observer{
     private Taille size; //Taille de la grille à afficher
 
         // icones affichées dans la grille
-    private ImageIcon[] icoHero;
-    private ImageIcon icoCaseNormale;
-    private ImageIcon icoMur;
-    private ImageIcon icoColonne;
+    private ImageIcon[] iconHero;
+    private ImageIcon[] iconCase;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
     private JLabel[][] inventaireLabel;
@@ -122,13 +118,17 @@ public class VueControleur extends JFrame implements Observer{
          ********************/
     private void chargerLesIcones(){
 
-        icoHero = new ImageIcon[4];
-        icoHero[0] = chargerIcone("data/Images/Pacman_H.png");
-        icoHero[1] = chargerIcone("data/Images/Pacman_D.png");
-        icoHero[2] = chargerIcone("data/Images/Pacman_B.png");
-        icoHero[3] = chargerIcone("data/Images/Pacman_G.png");
-        icoCaseNormale = chargerIcone("data/Images/Vide.png");
-        icoMur = chargerIcone("data/Images/Mur.png");
+        iconHero = new ImageIcon[Direction.All.ordinal()];
+        for(int i = 0; i < Direction.All.ordinal(); ++i) {
+
+            iconHero[i] = chargerIcone("data/Images/Pacman_" + Direction.values()[i].name() + ".png");
+        }
+
+        iconCase = new ImageIcon[TypeCase.All.ordinal() + 1];
+        for(int i = 0; i <= TypeCase.All.ordinal(); ++i){
+
+            iconCase[i] = chargerIcone("data/Images/" + TypeCase.values()[i].name() + ".png");
+        }
     }
 
         /****************
@@ -157,7 +157,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(430, 300);
+        setSize(20*Jeu.SIZE.getX(), 20*Jeu.SIZE.getY() + 50);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();
@@ -247,19 +247,21 @@ public class VueControleur extends JFrame implements Observer{
 
             for(int y = 0; y < size.getY(); ++y){
 
-                EntiteStatique e = jeu.getEntite(x, y);
+                TypeCase type = TypeCase.All;
+                try{
 
-                if(e instanceof Mur){
-
-                    tabJLabel[x][y].setIcon(icoMur);
+                    type = jeu.getEntite(x, y).getTypeCase();
                 }
-                else if(e instanceof CaseNormale){
+                catch (Exception exception) {
 
-                    tabJLabel[x][y].setIcon(icoCaseNormale);
+                    exception.printStackTrace();
                 }
+
+                tabJLabel[x][y].setIcon(iconCase[type.ordinal()]);
             }
         }
-        tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(icoHero[jeu.getHeros().getDirection().ordinal()]);
+
+        tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(iconHero[jeu.getHeros().getDirection().ordinal()]);
     }
 
         /**********

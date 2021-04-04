@@ -35,7 +35,7 @@ public class Inventaire{
 
         for(int i = 0; i < Element.ALL.ordinal(); ++i){
 
-            inventaire[i] = 2;
+            inventaire[i] = 50000;
         }
     }
 
