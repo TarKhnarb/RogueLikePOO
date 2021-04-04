@@ -5,6 +5,8 @@ import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Salles.Cases.EtatSerrure;
 
+import java.io.FileNotFoundException;
+
 public class Etage{
 
         /*************
@@ -180,8 +182,22 @@ public class Etage{
 
         placerPortes();
         affecterTypeSalles();
-        etage[milieu][milieu].placerCases();
+        placerCases();
         return ++numeroEtage;
+    }
+
+    private void placerCases() throws FileNotFoundException{
+
+        for(int y = 0; y < taille; ++y){
+
+            for(int x = 0; x < taille; ++x){
+
+                if(etage[x][y] != null){
+
+                    etage[x][y].placerCases();
+                }
+            }
+        }
     }
 
         /************

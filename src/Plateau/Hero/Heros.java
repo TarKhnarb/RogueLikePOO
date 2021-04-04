@@ -84,19 +84,19 @@ public class Heros{
         switch(direction){
 
             case Haut:
-                position.setPosition((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 2); // Bas
+                position.setPosition((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 1); // Bas
                 break;
 
             case Droite:
-                position.setPosition(1, (Jeu.SIZE.getY() - 1)/2); //Gauche
+                position.setPosition(0, (Jeu.SIZE.getY() - 1)/2); //Gauche
                 break;
 
             case Bas:
-                position.setPosition((Jeu.SIZE.getX() - 1)/2, 1); //Haut
+                position.setPosition((Jeu.SIZE.getX() - 1)/2, 0); //Haut
                 break;
 
             case Gauche:
-                position.setPosition(Jeu.SIZE.getX() - 2, (Jeu.SIZE.getY() - 1)/2);
+                position.setPosition(Jeu.SIZE.getX() - 1, (Jeu.SIZE.getY() - 1)/2);
                 break;
 
             case All:

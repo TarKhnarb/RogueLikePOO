@@ -106,7 +106,6 @@ public class Partie{
         }
 
         jeu.getHeros().changerSalle(direction);
-        etage.getSalle(positionEtage).placerCases();
     }
 
         /************
