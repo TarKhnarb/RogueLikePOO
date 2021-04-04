@@ -34,9 +34,9 @@ public class CaseUnique extends EntiteStatique{
         }
     }
 
-    /***************
-     * Traversable *
-     ***************/
+        /***************
+         * Traversable *
+         ***************/
     @Override
     public boolean traversable(){
 

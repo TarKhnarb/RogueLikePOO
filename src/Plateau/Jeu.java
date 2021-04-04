@@ -14,19 +14,17 @@ import Plateau.Salles.Partie;
 import java.io.FileNotFoundException;
 import java.util.Observable;
 
-
 public class Jeu extends Observable implements Runnable{
 
         /*************
          * Variables *
          *************/
-
     public static final Taille SIZE = new Taille(21, 11);
 
     private int pause = 200; // période de rafraichissement
 
     private Heros heros;
-    private Partie partie; // TODO mutation de grilleEntitesStatiques avec la lecture de fichier
+    private Partie partie;
 
         /****************
          * Constructeur *
