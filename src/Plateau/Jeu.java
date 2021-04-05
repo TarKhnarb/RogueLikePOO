@@ -42,6 +42,9 @@ public class Jeu extends Observable implements Runnable{
         return heros;
     }
 
+        /*************
+         * GetPartie *
+         *************/
     public Partie getPartie(){
 
         return partie;
@@ -56,7 +59,8 @@ public class Jeu extends Observable implements Runnable{
 
             return partie.getSalle().getGrille();
         }
-        catch (Exception e) {
+        catch(Exception e){
+
             e.printStackTrace();
         }
 

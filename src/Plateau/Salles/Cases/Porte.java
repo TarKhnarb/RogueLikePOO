@@ -81,7 +81,7 @@ public class Porte extends EntiteStatique{
     @Override
     public String toString() {
 
-        return "3";
+        return ((etat == EtatSerrure.Ouvert) ? "8" : "3");
     }
 
         /***************
@@ -90,6 +90,6 @@ public class Porte extends EntiteStatique{
     @Override
     public TypeCase getTypeCase() {
 
-        return TypeCase.Porte;
+        return ((etat == EtatSerrure.Ouvert) ? TypeCase.PorteOuvert : TypeCase.PorteFerme);
     }
 }

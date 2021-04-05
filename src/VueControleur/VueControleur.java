@@ -121,7 +121,7 @@ public class VueControleur extends JFrame implements Observer{
         iconHero = new ImageIcon[Direction.All.ordinal()];
         for(int i = 0; i < Direction.All.ordinal(); ++i) {
 
-            iconHero[i] = chargerIcone("data/Images/Pacman_" + Direction.values()[i].name() + ".png");
+            iconHero[i] = chargerIcone("data/Images/Hero_" + Direction.values()[i].name() + ".png");
         }
 
         iconCase = new ImageIcon[TypeCase.All.ordinal() + 1];
@@ -157,7 +157,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(20*Jeu.SIZE.getX(), 20*Jeu.SIZE.getY() + 50);
+        setSize(64*Jeu.SIZE.getX(), 64*Jeu.SIZE.getY() + 50);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();

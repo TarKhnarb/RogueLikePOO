@@ -3,7 +3,7 @@ package Plateau.Salles.Cases;
 import Plateau.Hero.Inventaire;
 import Plateau.Jeu;
 
-// TODO Voircomment gérerle faitque le Heros soit passé sur la case pour remettre feu à true
+// TODO Voir comment gérer le fait que le Heros soit passé sur la case pour remettre feu à true
 
 public class CaseUnique extends EntiteStatique{
 

@@ -78,7 +78,7 @@ public class Salle{
             case Vide:
                 return new CaseVide(jeu);
 
-            case Porte:
+            case PorteFerme:
                 return new Porte(jeu, direction, EtatSerrure.Ferme);
 
             case Coffre:
@@ -92,6 +92,9 @@ public class Salle{
 
             case Feu:
                 return new CaseUnique(jeu, true);
+
+            case PorteOuvert:
+                return new Porte(jeu, direction, EtatSerrure.Ouvert);
 
             case Mur:
             default:
