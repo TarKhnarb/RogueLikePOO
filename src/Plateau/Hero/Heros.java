@@ -79,6 +79,17 @@ public class Heros{
         }
     }
 
+        /********************
+         * CentrerDansSalle *
+         ********************/
+    public void centrerDansSalle(){
+
+        position.centrerDansZone();
+    }
+
+        /****************
+         * ChangerSalle *
+         ****************/
     public void changerSalle(Direction direction) throws Exception{
 
         switch(direction){

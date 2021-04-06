@@ -19,7 +19,6 @@ import Plateau.Jeu;
 import Plateau.Hero.*;
 import Plateau.Salles.Cases.*;
 
-
 /** Cette classe a deux fonctions :
  *  (1) Vue : proposer une représentation graphique de l'application (cases graphiques, etc.)
  *  (2) Controleur : écouter les évènements clavier et déclencher le traitement adapté sur le modèle (flèches direction, etc.))
@@ -36,6 +35,7 @@ public class VueControleur extends JFrame implements Observer{
         // icones affichées dans la grille
     private ImageIcon[] iconHero;
     private ImageIcon[] iconCase;
+    private ImageIcon[] iconInventaire;
 
     private JLabel[][] tabJLabel; // cases graphique (au moment du rafraichissement, chaque case va être associée à une icône, suivant ce qui est présent dans le modèle)
     private JLabel[][] inventaireLabel;
@@ -121,13 +121,19 @@ public class VueControleur extends JFrame implements Observer{
         iconHero = new ImageIcon[Direction.All.ordinal()];
         for(int i = 0; i < Direction.All.ordinal(); ++i) {
 
-            iconHero[i] = chargerIcone("data/Images/Hero_" + Direction.values()[i].name() + ".png");
+            iconHero[i] = chargerIcone("data/Images/Cases/Hero_" + Direction.values()[i].name() + ".png");
         }
 
         iconCase = new ImageIcon[TypeCase.All.ordinal() + 1];
         for(int i = 0; i <= TypeCase.All.ordinal(); ++i){
 
-            iconCase[i] = chargerIcone("data/Images/" + TypeCase.values()[i].name() + ".png");
+            iconCase[i] = chargerIcone("data/Images/Cases/" + TypeCase.values()[i].name() + ".png");
+        }
+
+        iconInventaire = new ImageIcon[Inventaire.Element.All.ordinal()];
+        for(int i = 0; i < Inventaire.Element.All.ordinal(); ++i){
+
+            iconInventaire[i] = chargerIcone("data/Images/Inventaire/" + Inventaire.Element.values()[i].name() + ".png");
         }
     }
 
@@ -157,7 +163,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(64*Jeu.SIZE.getX(), 64*Jeu.SIZE.getY() + 50);
+        setSize(64*Jeu.SIZE.getX(), 64*Jeu.SIZE.getY() + 64);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();
@@ -177,9 +183,9 @@ public class VueControleur extends JFrame implements Observer{
         Inventaire inventaire = jeu.getHeros().getInventaire();
         JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()*2));
 
-        inventaireLabel = new JLabel[1][inventaire.getTaille()*2];
+        inventaireLabel = new JLabel[1][size.getX()];
 
-        for(int i = 0; i < inventaire.getTaille()*2; ++i){
+        for(int i = 1; i < size.getX(); ++i){
 
             JLabel label = new JLabel();
             inventaireLabel[0][i] = label;
@@ -231,10 +237,10 @@ public class VueControleur extends JFrame implements Observer{
 
         Inventaire inventaire = jeu.getHeros().getInventaire();
 
-        for(int i = 0; i < inventaire.getTaille()*2 - 1; i= (i+2)){
+        for(int i = 1; i < inventaire.getTaille()*2; i= (i+2)){
 
-            inventaireLabel[0][i].setText(Inventaire.Element.values()[i/2].name());
-            inventaireLabel[0][i+1].setText(String.valueOf(inventaire.getInventaire(Inventaire.Element.values()[i/2])));
+            inventaireLabel[0][i].setIcon(iconInventaire[(i - 1)/2]);
+            inventaireLabel[0][i + 1].setText(String.valueOf(inventaire.getInventaire(Inventaire.Element.values()[(i - 1)/2])));
         }
     }
 
@@ -270,14 +276,22 @@ public class VueControleur extends JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg){
 
-        mettreAJourAffichage();
-        /*
-        SwingUtilities.invokeLater(new Runnable() {
+        //mettreAJourAffichage();
+
+        SwingUtilities.invokeLater(new Runnable(){
                     @Override
-                    public void run() {
+                    public void run(){
+
+                        if(arg instanceof Jeu){
+
+                            System.out.println("Test restart jeu");
+                            jeu =  new Jeu((Jeu) arg);
+
+                        }
+
                         mettreAJourAffichage();
                     }
                 }); 
-        */
+
     }
 }

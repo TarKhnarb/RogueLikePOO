@@ -4,15 +4,16 @@ import Plateau.Jeu;
 
 public enum TypeCase{
 
-    Mur,        // 0: Mur, non Tranversable
-    Normale,    // 1: Case normale, traversable
-    Vide,       // 2: Case de vide, non traversable ormi si le saut est intégré
-    PorteFerme,      // 3: Porte, traversable uniquement si le Hero à au moins un clé
-    Coffre,     // 4: Coffre, traversable uniquement si le Hero à au moins un clé
-    Cle,        // 5: Clé, case normale avec une clé dessus
-    Unique,     // 6: Case à usage unique traversable une seul fois après s'enflamme
-    Feu,        // 7: Case à usage unique enflammée, nécessite une capsule d'eau pour la retraverser
-    PorteOuvert,
+    Mur,            // 0: Mur, non Tranversable
+    Normale,        // 1: Case normale, traversable
+    Vide,           // 2: Case de vide, non traversable ormi si le saut est intégré
+    PorteFerme,     // 3: Porte, traversable uniquement si le Hero à au moins un clé
+    Coffre,         // 4: Coffre, traversable uniquement si le Hero à au moins un clé
+    Cle,            // 5: Clé, case normale avec une clé dessus
+    Unique,         // 6: Case à usage unique traversable une seul fois après s'enflamme
+    Feu,            // 7: Case à usage unique enflammée, nécessite une capsule d'eau pour la retraverser
+    PorteOuvert,    // 8: Porte ouverte
+    PorteEtage,     // 9: Porte de changement d'étage
     All
 }
 

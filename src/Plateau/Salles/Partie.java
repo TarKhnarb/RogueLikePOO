@@ -52,8 +52,7 @@ public class Partie{
     public Partie(Jeu jeu) throws FileNotFoundException{
 
         this.jeu = jeu;
-        this.numeroEtage = 0;
-
+        this.numeroEtage = -1;
         this.maxEtages = loadInformations();
 
         centrerPosition();
@@ -64,35 +63,39 @@ public class Partie{
          ***************/
     private void nouvelEtage() throws Exception{
 
+        jeu.getHeros().centrerDansSalle();
+        positionEtage.centrerDansZone();
         etage = new Etage(jeu, tailleEtage, informations.get(numeroEtage).get(InfoPartie.MinSalles.ordinal()), informations.get(numeroEtage).get(InfoPartie.MaxSalles.ordinal()));
-        positionEtage.setPosition((tailleEtage - 1)/2, (tailleEtage - 1)/2);
     }
 
         /****************
          * GenererEtage *
          ****************/
-    private int genererEtage() throws Exception{
+    private void genererEtage() throws Exception{
 
-        return etage.genererEtage(numeroEtage);
+        System.out.println(numeroEtage);
+        etage.genererEtage();
     }
 
+        /****************
+         * ChangerEtage *
+         ****************/
     public void changerEtage(){
 
-        System.out.println("Ancien etage: " + numeroEtage);
-        try{
+        ++numeroEtage;
+        if(partieEnCours()){
 
-            nouvelEtage();
-            numeroEtage = genererEtage();
+            System.out.println("Je change d'étages: " + numeroEtage);
+            try{
+
+                nouvelEtage();
+                genererEtage();
+            }
+            catch(Exception e){
+
+                e.printStackTrace();
+            }
         }
-        catch(Exception e){
-
-            e.printStackTrace();
-        }
-
-        System.out.println("Nouvel etage: " + numeroEtage);
-
-        System.out.println(etage.toString());
-        System.out.println();
     }
 
         /****************
@@ -114,6 +117,14 @@ public class Partie{
     public Salle getSalle() throws Exception{
 
         return etage.getSalle(positionEtage);
+    }
+
+        /******************
+         * GetNumeroEtage *
+         ******************/
+    public int getNumeroEtage(){
+
+        return numeroEtage;
     }
 
         /******************
@@ -155,12 +166,19 @@ public class Partie{
 
         if(informations.size() != cpt){
 
-            System.out.println("Partie::loadInformations - Les données ont étémal lues" + informations.size() + " / " + cpt);
+            System.out.println("Partie::loadInformations - Les données ont été mal lues" + informations.size() + " / " + cpt);
         }
 
         return cpt;
     }
 
+        /*****************
+         * PartieEnCours *
+         *****************/
+    public boolean partieEnCours(){
+
+        return (numeroEtage != informations.size());
+    }
 
         /*************
          * InfoDebug *

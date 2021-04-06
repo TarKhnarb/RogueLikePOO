@@ -11,7 +11,7 @@ public class Inventaire{
 
         Cle,
         Capsule,
-        ALL
+        All
     }
         /*************
          * Variables *
@@ -23,7 +23,7 @@ public class Inventaire{
          ****************/
     public Inventaire(){
 
-        this.inventaire = new int[Element.ALL.ordinal()];
+        this.inventaire = new int[Element.All.ordinal()];
 
         initInventaire();
     }
@@ -33,7 +33,7 @@ public class Inventaire{
          ******************/
     public void initInventaire(){
 
-        for(int i = 0; i < Element.ALL.ordinal(); ++i){
+        for(int i = 0; i < Element.All.ordinal(); ++i){
 
             inventaire[i] = 50000;
         }
@@ -44,7 +44,7 @@ public class Inventaire{
          *************/
     public int getTaille(){
 
-        return Element.ALL.ordinal();
+        return Element.All.ordinal();
     }
 
         /*****************
@@ -92,7 +92,7 @@ public class Inventaire{
     public void recupererInventaire(Inventaire inventaire) throws Exception{
 
         int temp;
-        for(int i = 0; i < Element.ALL.ordinal(); ++i){
+        for(int i = 0; i < Element.All.ordinal(); ++i){
 
             temp = inventaire.getInventaire(Element.values()[i]);
             this.inventaire[i] += temp;

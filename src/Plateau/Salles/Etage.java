@@ -42,7 +42,7 @@ public class Etage{
         /*****************
          * GenerateEtage *
          *****************/
-    public int genererEtage(int numeroEtage) throws Exception{
+    public void genererEtage() throws Exception{
 
         setSeed();
         int nombreSalles = (int)(Math.random() * (maxSalle - minSalle + 1)) + minSalle;
@@ -50,11 +50,9 @@ public class Etage{
         int entropy = 2;        // ATTENTION mini = 1
         int milieu = (taille - 1)/2;
 
-        System.out.println("Nb salles: " + (nombreSalles + 1));
-
         while(nombreSalles != compteurSalles){
 
-            reset(numeroEtage); // Reset l'etage (nettoie le tableau et genere le depart au milieu du tableau)
+            reset(); // Reset l'etage (nettoie le tableau et genere le depart au milieu du tableau)
             compteurSalles = 0; // Au cas où on recommence
 
                 // Génère les salles de l'étage
@@ -183,7 +181,6 @@ public class Etage{
         placerPortes();
         affecterTypeSalles();
         placerCases();
-        return ++numeroEtage;
     }
 
     private void placerCases() throws FileNotFoundException{
@@ -226,7 +223,7 @@ public class Etage{
         /*********
          * Reset *
          *********/
-    private void reset(int numeroEtage){
+    private void reset(){
 
         etage = new Salle[taille][taille];
 

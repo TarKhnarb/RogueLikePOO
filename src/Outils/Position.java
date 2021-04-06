@@ -127,4 +127,34 @@ public class Position{
                 return false;
         }
     }
+
+    public void centrerDansZone(){
+
+        if((zoneMax.getX() - zoneMin.getX())%2 == 0){
+
+            if((zoneMax.getY() - zoneMin.getY())%2 == 0){
+
+                x = (zoneMax.getX() - zoneMin.getX())/2;
+                y = (zoneMax.getY() - zoneMin.getY())/2;
+            }
+            else{
+
+                x = (zoneMax.getX() - zoneMin.getX())/2;
+                y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+            }
+        }
+        else{
+
+            if((zoneMax.getY() - zoneMin.getY())%2 == 0){
+
+                x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
+                y = (zoneMax.getY() - zoneMin.getY())/2;
+            }
+            else{
+
+                x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
+                y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+            }
+        }
+    }
 }

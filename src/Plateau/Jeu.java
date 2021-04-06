@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Plateau;
 
 import Outils.Position;
@@ -21,7 +16,7 @@ public class Jeu extends Observable implements Runnable{
          *************/
     public static final Taille SIZE = new Taille(21, 11);
 
-    private int pause = 200; // période de rafraichissement
+    private int pause = 10; // période de rafraichissement
 
     private Heros heros;
     private Partie partie;
@@ -31,6 +26,14 @@ public class Jeu extends Observable implements Runnable{
          ****************/
     public Jeu(){
 
+        nouveauHero();
+        initialisationDesEntites();
+    }
+
+    public Jeu(Jeu jeu){
+
+        System.out.println("Numero etagenouvelle partie: " + jeu.partie.getNumeroEtage());
+        this.heros = jeu.heros;
         initialisationDesEntites();
     }
 
@@ -81,12 +84,15 @@ public class Jeu extends Observable implements Runnable{
         return partie.getSalle().getGrille()[x][y];
     }
 
+    private void nouveauHero(){
+
+        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));
+    }
+
         /****************************
          * InitialisationDesEntites *
          ****************************/
     private void initialisationDesEntites(){
-
-        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));
 
         try{
 
@@ -113,7 +119,9 @@ public class Jeu extends Observable implements Runnable{
          *******/
     public void run(){
 
-        while(true){
+        // TODO mettre en place un micro menu avec un choix pour commencer la partie
+
+        while(partie.partieEnCours()){
 
             setChanged();
             notifyObservers();
@@ -127,5 +135,11 @@ public class Jeu extends Observable implements Runnable{
                 e.printStackTrace();
             }
         }
+
+        System.out.println("Partie terminée");
+        initialisationDesEntites();
+        start();
+
+        // TODO mettre un message "Bien jouer""
     }
 }

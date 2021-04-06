@@ -57,9 +57,14 @@ public class Porte extends EntiteStatique{
 
             return false;
         }
-        else{
+        else if(etat.equals(EtatSerrure.Ouvert)){
 
             jeu.getPartie().changerSalle(this.direction);
+            return true;
+        }
+        else{
+
+            jeu.getPartie().changerEtage();
             return true;
         }
     }
@@ -81,7 +86,21 @@ public class Porte extends EntiteStatique{
     @Override
     public String toString() {
 
-        return ((etat == EtatSerrure.Ouvert) ? "8" : "3");
+        switch(etat){
+
+            case Ferme:
+                return "3";
+
+            case Ouvert:
+                return "8";
+
+            case Etage:
+                return "9";
+
+            default:
+                System.out.println("Porte::toString - la Porte n'a pas d'etat valides");
+                return "!";
+        }
     }
 
         /***************
@@ -90,6 +109,20 @@ public class Porte extends EntiteStatique{
     @Override
     public TypeCase getTypeCase() {
 
-        return ((etat == EtatSerrure.Ouvert) ? TypeCase.PorteOuvert : TypeCase.PorteFerme);
+        switch(etat){
+
+            case Ferme:
+                return TypeCase.PorteFerme;
+
+            case Ouvert:
+                return TypeCase.PorteOuvert;
+
+            case Etage:
+                return TypeCase.PorteEtage;
+
+            default:
+                System.out.println("Porte::getTypeCase - la Porte n'a pas d'etat valides");
+                return TypeCase.All;
+        }
     }
 }

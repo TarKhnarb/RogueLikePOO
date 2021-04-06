@@ -50,7 +50,6 @@ public class Salle{
     private Taille taille;
     private Jeu jeu;
 
-
         /****************
          * Constructeur *
          ****************/
@@ -63,7 +62,6 @@ public class Salle{
         this.grille = new EntiteStatique[taille.getX()][taille.getY()];
         this.portes = new Porte[4];
     }
-
 
         /************
          * GetClass *
@@ -95,6 +93,9 @@ public class Salle{
 
             case PorteOuvert:
                 return new Porte(jeu, direction, EtatSerrure.Ouvert);
+
+            case PorteEtage:
+                return new Porte(jeu, direction, EtatSerrure.Etage);
 
             case Mur:
             default:
@@ -129,6 +130,9 @@ public class Salle{
         }
     }
 
+    /***************
+     * PlacePortes *
+     ***************/
     private void placePortes(){
 
         for(int i = 0; i < Direction.All.ordinal(); ++i){
@@ -165,7 +169,6 @@ public class Salle{
          * PlacerCases *
          ***************/
     public void placerCases() throws FileNotFoundException{
-
 
         Scanner scanner = new Scanner(new File("data/Salles/Salle_" + this.type.name() + ".salle"));
 

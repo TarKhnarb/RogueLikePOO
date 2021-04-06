@@ -7,14 +7,14 @@ import Plateau.Jeu;
 
 public class CaseUnique extends EntiteStatique{
 
-    /*************
-     * Variables *
-     *************/
+        /*************
+         * Variables *
+         *************/
     private boolean feu;
 
-    /****************
-     * Constructeur *
-     ****************/
+        /****************
+         * Constructeur *
+         ****************/
     public CaseUnique(Jeu jeu, boolean feu){
 
         super(jeu);
@@ -40,7 +40,8 @@ public class CaseUnique extends EntiteStatique{
     @Override
     public boolean traversable(){
 
-        return !feu;
+        return true; // TODO à enlever lorsque les capsules seront implémentées
+        //return !feu;
     }
 
         /************

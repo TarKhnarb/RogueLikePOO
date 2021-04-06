@@ -6,5 +6,6 @@ package Plateau.Salles.Cases;
 public enum EtatSerrure{
 
     Ferme,
-    Ouvert
+    Ouvert,
+    Etage
 }
