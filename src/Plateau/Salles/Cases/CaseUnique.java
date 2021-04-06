@@ -40,7 +40,6 @@ public class CaseUnique extends EntiteStatique{
 
         if(feu){
 
-            jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
             feu = false;
             this.type = TypeCase.Unique;
         }
