@@ -24,28 +24,17 @@ public class CaseUnique extends EntiteStatique{
     }
 
         /***************
-         * EteindreFeu *
-         ***************/
-    private void eteindreFeu() throws Exception{
-
-        if(feu){
-
-            jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
-            feu = false;
-            this.type = TypeCase.Normale;
-        }
-    }
-
-        /***************
          * Traversable *
          ***************/
     @Override
     public boolean traversable(){
 
-        //return true; // TODO à enlever lorsque les capsules seront implémentées
         return !feu;
     }
 
+        /**************
+         * UpdateCase *
+         **************/
     @Override
     public boolean updateCase() throws Exception{
 

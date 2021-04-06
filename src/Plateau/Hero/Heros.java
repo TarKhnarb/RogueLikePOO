@@ -53,6 +53,9 @@ public class Heros{
         return position.getY();
     }
 
+        /***************
+         * GetPosition *
+         ***************/
     public Position getPosition(){
 
         return position;

@@ -50,6 +50,9 @@ public abstract class EntiteStatique{
         return type;
     }
 
+        /**************
+         * UpdateCase *
+         **************/
     public boolean updateCase() throws Exception{
 
         return false;
