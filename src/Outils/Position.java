@@ -7,18 +7,16 @@ public class Position{
         /*************
          * Variables *
          *************/
-    private int x;
-    private int y;
+    private Coordonnee coordonnee;
     private final Taille zoneMin;
     private final Taille zoneMax;
 
         /****************
          * Constructeur *
          ****************/
-    public Position(int x, int y, Taille zoneMin, Taille zoneMax){
+    public Position(Coordonnee coordonnee, Taille zoneMin, Taille zoneMax){
 
-        this.x = x;
-        this.y = y;
+        this.coordonnee = coordonnee;
         this.zoneMin = zoneMin;
         this.zoneMax = zoneMax;
     }
@@ -26,12 +24,11 @@ public class Position{
         /***************
          * SetPosition *
          ***************/
-    public void setPosition(int x, int y) throws Exception{
+    public void setPosition(Coordonnee coordonnee) throws Exception{
 
-        if((zoneMin.getX() <= x) && (x <= zoneMax.getX()) && (zoneMin.getY() <= y) && (y <= zoneMax.getY())){
+        if((zoneMin.getX() <= coordonnee.x) && (coordonnee.x <= zoneMax.getX()) && (zoneMin.getY() <= coordonnee.y) && (coordonnee.y <= zoneMax.getY())){
 
-            this.x = x;
-            this.y = y;
+            this.coordonnee = coordonnee;
         }
         else{
 
@@ -44,7 +41,7 @@ public class Position{
          ********/
     public int getX() {
 
-        return x;
+        return coordonnee.x;
     }
 
         /********
@@ -52,7 +49,12 @@ public class Position{
          ********/
     public int getY() {
 
-        return y;
+        return coordonnee.y;
+    }
+
+    public Coordonnee getCoord(){
+
+        return coordonnee;
     }
 
         /**************
@@ -76,56 +78,15 @@ public class Position{
          ********/
     public boolean move(Direction direction){
 
-        switch(direction){
+        Coordonnee coord = coordonnee.getCoord(direction);
 
-            case Haut:
-                if((y - 1) >= zoneMin.getY()){
+        if((zoneMin.getX() <= coord.x) && (coord.x <= zoneMax.getX()) && (zoneMin.getY() <= coord.y) && (coord.y <= zoneMax.getY())){
 
-                    --y;
-                    return true;
-                }
-                else{
-
-                    return false;
-                }
-
-            case Droite:
-                if((x + 1) <= zoneMax.getX()){
-
-                    ++x;
-                    return true;
-                }
-                else{
-
-                    return false;
-                }
-
-            case Bas:
-                if((y + 1) <= zoneMax.getY()){
-
-                    ++y;
-                    return true;
-                }
-                else{
-
-                    return false;
-                }
-
-            case Gauche:
-                if((x - 1) >= zoneMin.getX()){
-
-                    --x;
-                    return true;
-                }
-                else{
-
-                    return false;
-                }
-
-            case All:
-            default:
-                return false;
+            this.coordonnee.setCoord(coord);
+            return true;
         }
+
+        return false;
     }
 
     public void centrerDansZone(){
@@ -134,27 +95,38 @@ public class Position{
 
             if((zoneMax.getY() - zoneMin.getY())%2 == 0){
 
-                x = (zoneMax.getX() - zoneMin.getX())/2;
-                y = (zoneMax.getY() - zoneMin.getY())/2;
+                coordonnee.x = (zoneMax.getX() - zoneMin.getX())/2;
+                coordonnee.y = (zoneMax.getY() - zoneMin.getY())/2;
             }
             else{
 
-                x = (zoneMax.getX() - zoneMin.getX())/2;
-                y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+                coordonnee.x = (zoneMax.getX() - zoneMin.getX())/2;
+                coordonnee.y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
             }
         }
         else{
 
             if((zoneMax.getY() - zoneMin.getY())%2 == 0){
 
-                x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
-                y = (zoneMax.getY() - zoneMin.getY())/2;
+                coordonnee.x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
+                coordonnee.y = (zoneMax.getY() - zoneMin.getY())/2;
             }
             else{
 
-                x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
-                y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+                coordonnee.x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
+                coordonnee.y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
             }
         }
+    }
+
+    public Coordonnee getCoord(Direction direction){
+
+        Coordonnee coord = coordonnee.getCoord(direction);
+        if((zoneMin.getX() <= coord.x) && (coord.x <= zoneMax.getX()) && (zoneMin.getY() <= coord.y) && (coord.y <= zoneMax.getY())){
+
+            return coord;
+        }
+
+        return null;
     }
 }

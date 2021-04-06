@@ -1,5 +1,6 @@
 package Plateau;
 
+import Outils.Coordonnee;
 import Outils.Position;
 import Outils.Taille;
 import Plateau.Salles.Cases.EntiteStatique;
@@ -86,7 +87,7 @@ public class Jeu extends Observable implements Runnable{
 
     private void nouveauHero(){
 
-        heros = new Heros(this, new Position(10, 5, new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));
+        heros = new Heros(this, new Position(new Coordonnee(10, 5), new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));
     }
 
         /****************************

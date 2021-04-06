@@ -5,10 +5,10 @@
  */
 package Plateau.Hero;
 
+import Outils.Coordonnee;
 import Outils.Position;
 import Plateau.Direction;
 import Plateau.Jeu;
-import Plateau.Salles.Cases.TypeCase;
 
 import static Plateau.Salles.Cases.TypeCase.Feu;
 
@@ -98,19 +98,19 @@ public class Heros{
         switch(direction){
 
             case Haut:
-                position.setPosition((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 1); // Bas
+                position.setPosition(new Coordonnee((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 1)); // Bas
                 break;
 
             case Droite:
-                position.setPosition(0, (Jeu.SIZE.getY() - 1)/2); //Gauche
+                position.setPosition(new Coordonnee(0, (Jeu.SIZE.getY() - 1)/2)); //Gauche
                 break;
 
             case Bas:
-                position.setPosition((Jeu.SIZE.getX() - 1)/2, 0); //Haut
+                position.setPosition(new Coordonnee((Jeu.SIZE.getX() - 1)/2, 0)); //Haut
                 break;
 
             case Gauche:
-                position.setPosition(Jeu.SIZE.getX() - 1, (Jeu.SIZE.getY() - 1)/2);
+                position.setPosition(new Coordonnee(Jeu.SIZE.getX() - 1, (Jeu.SIZE.getY() - 1)/2));
                 break;
 
             case All:
@@ -157,9 +157,9 @@ public class Heros{
         }
     }
 
-    /*****************
-     * Lancercapsule *
-     *****************/
+        /*****************
+         * Lancercapsule *
+         *****************/
     public void lancercapsule() throws Exception{
 
         System.out.println("test fonction de lancer capsule");

@@ -1,5 +1,6 @@
 package Plateau.Salles;
 
+import Outils.Coordonnee;
 import Outils.Position;
 import Outils.Taille;
 import Plateau.Direction;
@@ -133,7 +134,7 @@ public class Partie{
     private void centrerPosition(){
 
         int centre= (tailleEtage - 1) / 2;
-        this.positionEtage = new Position(centre, centre, new Taille(0, 0), new Taille(tailleEtage - 1, tailleEtage - 1));
+        this.positionEtage = new Position(new Coordonnee(centre, centre), new Taille(0, 0), new Taille(tailleEtage - 1, tailleEtage - 1));
     }
 
         /********************
