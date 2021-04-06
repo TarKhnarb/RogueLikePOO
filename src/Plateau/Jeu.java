@@ -85,6 +85,17 @@ public class Jeu extends Observable implements Runnable{
         return partie.getSalle().getGrille()[x][y];
     }
 
+    public EntiteStatique getEntite(Coordonnee coord) throws Exception{
+
+        if((coord.x < 0) || (coord.x >= SIZE.getX()) || (coord.y < 0) || (coord.y >= SIZE.getY())){
+
+            // L'entité demandée est en-dehors de la grille
+            return null;
+        }
+
+        return partie.getSalle().getGrille()[coord.x][coord.y];
+    }
+
     private void nouveauHero(){
 
         heros = new Heros(this, new Position(new Coordonnee(10, 5), new Taille(0, 0), new Taille(SIZE.getX() - 1, SIZE.getY() - 1)));

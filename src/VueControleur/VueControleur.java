@@ -14,7 +14,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 import Outils.Coordonnee;
-import Outils.Position;
 import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
@@ -114,7 +113,19 @@ public class VueControleur extends JFrame implements Observer{
                     case KeyEvent.VK_C:
                         try{
 
-                            jeu.getHeros().lancercapsule();
+                            jeu.getHeros().lancerCapsule();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
+
+
+                    case KeyEvent.VK_SPACE:
+                        try{
+
+                            jeu.getHeros().sauter();
                         }
                         catch(Exception exception){
 
@@ -282,21 +293,6 @@ public class VueControleur extends JFrame implements Observer{
 
         Heros hero = jeu.getHeros();
         tabJLabel[hero.getX()][hero.getY()].setIcon(iconHero[hero.getDirection().ordinal()]);
-
-        Coordonnee ancienPos = hero.getPosition().getCoord(Direction.values()[(hero.getDirection().ordinal() + 2)%Direction.All.ordinal()]);
-
-        try{
-
-            EntiteStatique entite = jeu.getEntite(ancienPos.x, ancienPos.y);
-            if(entite.getTypeCase() == TypeCase.Unique){
-
-                entite.updateCase();
-            }
-        }
-        catch (Exception e) {
-
-            e.printStackTrace();
-        }
     }
 
         /**********

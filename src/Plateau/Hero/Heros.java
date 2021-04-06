@@ -9,6 +9,7 @@ import Outils.Coordonnee;
 import Outils.Position;
 import Plateau.Direction;
 import Plateau.Jeu;
+import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Salles.Cases.TypeCase;
 
 /**
@@ -86,6 +87,11 @@ public class Heros{
         if(traversable(this.direction)){
 
             position.move(this.direction);
+
+            if(jeu.getEntite(position.getCoord()).getTypeCase() == TypeCase.Unique){
+
+                jeu.getEntite(position.getCoord()).updateCase();
+            }
         }
     }
 
@@ -123,7 +129,7 @@ public class Heros{
             case All:
             default:
 
-                throw new Exception("Changement de salle impossible,  la direction n'a pas été affectée correctement");
+                throw new Exception("Heros::lancerCapsule - Changement de salle impossible,  la direction n'a pas été affectée correctement");
         }
     }
 
@@ -132,56 +138,62 @@ public class Heros{
          ***************/
     private boolean traversable(Direction dir) throws Exception{
 
-        switch(dir){
 
-            case Haut:
-                if(0 <= (position.getY() - 1)){
+        Coordonnee coord = position.getCoord(dir);
 
-                    return jeu.getEntite(position.getX(), (position.getY() - 1)).traversable();
-                }
+        if(coord == null) {
 
-            case Droite:
-                if((position.getX() + 1) < jeu.SIZE.getX()){
-
-                    return jeu.getEntite((position.getX() + 1), position.getY()).traversable();
-                }
-
-            case Bas:
-                if((position.getY() + 1) < jeu.SIZE.getY()){
-
-                    return jeu.getEntite(position.getX(), (position.getY() + 1)).traversable();
-                }
-
-            case Gauche:
-                if(0 <= (position.getX() - 1)){
-
-                    return jeu.getEntite((position.getX() - 1), position.getY()).traversable();
-                }
-
-            case All:
-            default:
-                return false;
+            throw new Exception("Heros::traversable - La direction n'a pas été affectée correctement");
         }
+
+        return jeu.getEntite(coord).traversable();
     }
 
         /*****************
          * Lancercapsule *
          *****************/
-    public void lancercapsule() throws Exception{
+    public void lancerCapsule() throws Exception{
 
         Coordonnee coord = position.getCoord(direction);
         if(coord == null) {
 
-            throw new Exception("Lancement impossible, la direction n'a pas été affectée correctement");
+            throw new Exception("Heros::lancerCapsule - Lancement impossible, la direction n'a pas été affectée correctement");
         }
 
-        if( (this.jeu.getEntite(coord.x, coord.y).getTypeCase()).equals(TypeCase.Feu) ){
+        if(this.jeu.getEntite(coord.x, coord.y).getTypeCase().equals(TypeCase.Feu)){
 
             if( inventaire.getInventaire(Inventaire.Element.Capsule) != 0){
 
                 //System.out.println(this.jeu.getEntite(coord.x, coord.y).getTypeCase() + " " + direction.name());
                 inventaire.enleverNElement(Inventaire.Element.Capsule, 1);
                 this.jeu.getEntite(coord.x, coord.y).updateCase();
+            }
+        }
+    }
+
+    public void sauter() throws Exception{
+
+        Coordonnee coord = position.getCoord(direction);
+
+        if(coord == null) {
+
+            throw new Exception("Heros::sauter - Lancement impossible, la direction n'a pas été affectée correctement");
+        }
+
+        EntiteStatique entite = this.jeu.getEntite(coord.x, coord.y);
+        if((entite.getTypeCase() == TypeCase.Vide)){
+
+
+            Coordonnee coord2 = new Coordonnee(new Position(coord, getPosition().getZoneMin(), getPosition().getZoneMax()).getCoord(direction)); // deux cases en avant
+            if(coord2 == null) {
+
+                throw new Exception("Heros::sauter - Lancement impossible, la direction n'a pas été affectée correctement");
+            }
+
+            EntiteStatique entite2 = this.jeu.getEntite(coord2.x, coord2.y);
+            if((entite2.getTypeCase() == TypeCase.Normale) || (entite2.getTypeCase() == TypeCase.Cle) || (entite2.getTypeCase() == TypeCase.Unique)){
+
+                position.setPosition(coord2);
             }
         }
     }
