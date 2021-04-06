@@ -10,6 +10,8 @@ public class Mur extends EntiteStatique {
     public Mur(Jeu jeu){
 
         super(jeu);
+
+        this.type = TypeCase.Mur;
     }
 
         /***************
@@ -19,23 +21,5 @@ public class Mur extends EntiteStatique {
     public boolean traversable(){
 
         return false;
-    }
-
-        /************
-         * ToString *
-         ************/
-    @Override
-    public String toString() {
-
-        return "0";
-    }
-
-        /***************
-         * GetTypeCase *
-         ***************/
-    @Override
-    public TypeCase getTypeCase() {
-
-        return TypeCase.Mur;
     }
 }

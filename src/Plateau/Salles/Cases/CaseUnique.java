@@ -20,6 +20,7 @@ public class CaseUnique extends EntiteStatique{
         super(jeu);
 
         this.feu = feu;
+        this.type = (feu ? TypeCase.Feu : TypeCase.Unique);
     }
 
         /***************
@@ -31,6 +32,7 @@ public class CaseUnique extends EntiteStatique{
 
             jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
             feu = false;
+            this.type = TypeCase.Normale;
         }
     }
 
@@ -40,25 +42,25 @@ public class CaseUnique extends EntiteStatique{
     @Override
     public boolean traversable(){
 
-        return true; // TODO à enlever lorsque les capsules seront implémentées
-        //return !feu;
+        //return true; // TODO à enlever lorsque les capsules seront implémentées
+        return !feu;
     }
 
-        /************
-         * ToString *
-         ************/
     @Override
-    public String toString(){
+    public boolean updateCase() throws Exception{
 
-        return (feu ? "5" : "1");
-    }
+        if(feu){
 
-        /***************
-         * GetTypeCase *
-         ***************/
-    @Override
-    public TypeCase getTypeCase(){
+            jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
+            feu = false;
+            this.type = TypeCase.Unique;
+        }
+        else{
 
-        return (feu ? TypeCase.Feu : TypeCase.Unique);
+            this.type = TypeCase.Feu;
+            feu = true;
+        }
+
+        return true;
     }
 }

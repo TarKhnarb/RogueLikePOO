@@ -21,6 +21,7 @@ public class Coffre extends EntiteStatique{
         this.etat = etat;
 
         remplirAleatoirementCoffre();
+        this.type = TypeCase.Coffre;
     }
 
         /******************************
@@ -59,18 +60,10 @@ public class Coffre extends EntiteStatique{
 
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
                 etat = EtatSerrure.Ouvert;
-
-                return true;
-            }
-            else{
-
-                return false;
             }
         }
-        else{
 
-            return true;
-        }
+        return false;
     }
 
         /***************
@@ -81,23 +74,5 @@ public class Coffre extends EntiteStatique{
     public boolean traversable() throws Exception{
 
         return ouvrirCoffre();
-    }
-
-        /************
-         * ToString *
-         ************/
-    @Override
-    public String toString(){
-
-        return "4";
-    }
-
-        /***************
-         * GetTypeCase *
-         ***************/
-    @Override
-    public TypeCase getTypeCase(){
-
-        return TypeCase.Coffre;
     }
 }

@@ -13,6 +13,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
+import Outils.Coordonnee;
+import Outils.Position;
 import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
@@ -278,7 +280,23 @@ public class VueControleur extends JFrame implements Observer{
             }
         }
 
-        tabJLabel[jeu.getHeros().getX()][jeu.getHeros().getY()].setIcon(iconHero[jeu.getHeros().getDirection().ordinal()]);
+        Heros hero = jeu.getHeros();
+        tabJLabel[hero.getX()][hero.getY()].setIcon(iconHero[hero.getDirection().ordinal()]);
+
+        Coordonnee ancienPos = hero.getPosition().getCoord(Direction.values()[(hero.getDirection().ordinal() + 2)%Direction.All.ordinal()]);
+
+        try{
+
+            EntiteStatique entite = jeu.getEntite(ancienPos.x, ancienPos.y);
+            if(entite.getTypeCase() == TypeCase.Unique){
+
+                entite.updateCase();
+            }
+        }
+        catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 
         /**********
@@ -292,13 +310,6 @@ public class VueControleur extends JFrame implements Observer{
         SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run(){
-
-                        if(arg instanceof Jeu){
-
-                            System.out.println("Test restart jeu");
-                            jeu =  new Jeu((Jeu) arg);
-
-                        }
 
                         mettreAJourAffichage();
                     }

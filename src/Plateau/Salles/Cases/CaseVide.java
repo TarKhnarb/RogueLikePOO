@@ -10,6 +10,8 @@ public class CaseVide extends EntiteStatique{
     public CaseVide(Jeu jeu){
 
         super(jeu);
+
+        this.type = TypeCase.Vide;
     }
 
         /***************
@@ -19,23 +21,5 @@ public class CaseVide extends EntiteStatique{
     public boolean traversable(){
 
         return false;
-    }
-
-        /************
-         * ToString *
-         ************/
-    @Override
-    public String toString(){
-
-        return "2";
-    }
-
-        /***************
-         * GetTypeCase *
-         ***************/
-    @Override
-    public TypeCase getTypeCase(){
-
-        return TypeCase.Vide;
     }
 }

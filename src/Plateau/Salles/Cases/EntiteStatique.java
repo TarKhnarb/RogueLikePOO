@@ -11,6 +11,7 @@ public abstract class EntiteStatique{
          * Variables *
          *************/
     protected Jeu jeu;
+    protected TypeCase type;
 
         /****************
          * Constructeur *
@@ -28,10 +29,29 @@ public abstract class EntiteStatique{
         /************
          * ToString *
          ************/
-    public abstract String toString();
+    public String toString(){
+
+        return String.valueOf(type.ordinal());
+    }
+
+        /***************
+         * SetTypeCase *
+         ***************/
+    public void setType(TypeCase type){
+
+        this.type = type;
+    }
 
         /***************
          * GetTypeCase *
          ***************/
-    public abstract TypeCase getTypeCase();
+    public TypeCase getTypeCase(){
+
+        return type;
+    }
+
+    public boolean updateCase() throws Exception{
+
+        return false;
+    }
 }

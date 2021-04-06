@@ -22,6 +22,8 @@ public class Porte extends EntiteStatique{
 
         this.direction = direction;
         this.etat = etat;
+
+        setType(getTypeCase());
     }
 
         /****************
@@ -51,7 +53,7 @@ public class Porte extends EntiteStatique{
 
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
                 etat = EtatSerrure.Ouvert;
-
+                setType(TypeCase.PorteOuvert);
                 return false;
             }
 

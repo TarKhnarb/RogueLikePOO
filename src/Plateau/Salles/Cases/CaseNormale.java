@@ -18,6 +18,8 @@ public class CaseNormale extends EntiteStatique{
         super(jeu);
 
         this.cle = cle;
+
+        this.type = (cle ? TypeCase.Cle : TypeCase.Normale);
     }
 
         /**********
@@ -29,6 +31,7 @@ public class CaseNormale extends EntiteStatique{
 
             jeu.getHeros().getInventaire().ajouterNElement(Inventaire.Element.Cle, 1);
             cle = false;
+            this.type = TypeCase.Normale;
         }
     }
 
@@ -45,24 +48,4 @@ public class CaseNormale extends EntiteStatique{
 
         return true;
     }
-
-        /************
-         * ToString *
-         ************/
-    @Override
-    public String toString(){
-
-        return (cle ? "5" : "1");
-    }
-
-        /***************
-         * GetTypeCase *
-         ***************/
-    @Override
-    public TypeCase getTypeCase(){
-
-        return (cle ? TypeCase.Cle : TypeCase.Normale);
-    }
-
-
 }

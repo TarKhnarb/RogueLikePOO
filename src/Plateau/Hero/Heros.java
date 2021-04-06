@@ -53,6 +53,11 @@ public class Heros{
         return position.getY();
     }
 
+    public Position getPosition(){
+
+        return position;
+    }
+
         /*****************
          * GetInventaire *
          *****************/
@@ -171,9 +176,9 @@ public class Heros{
 
             if( inventaire.getInventaire(Inventaire.Element.Capsule) != 0){
 
-                System.out.println(this.jeu.getEntite(coord.x, coord.y).getTypeCase() + " " + direction.name());
+                //System.out.println(this.jeu.getEntite(coord.x, coord.y).getTypeCase() + " " + direction.name());
                 inventaire.enleverNElement(Inventaire.Element.Capsule, 1);
-                //this.jeu.getEntite(position.getX(), position.getY() - 1).eteindreFeu();
+                this.jeu.getEntite(coord.x, coord.y).updateCase();
             }
         }
     }
