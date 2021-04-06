@@ -8,6 +8,9 @@ package Plateau.Hero;
 import Outils.Position;
 import Plateau.Direction;
 import Plateau.Jeu;
+import Plateau.Salles.Cases.TypeCase;
+
+import static Plateau.Salles.Cases.TypeCase.Feu;
 
 /**
  * Héros du jeu
@@ -152,5 +155,78 @@ public class Heros{
             default:
                 return false;
         }
+    }
+
+    /*****************
+     * Lancercapsule *
+     *****************/
+    public void lancercapsule() throws Exception{
+
+        System.out.println("test fonction de lancer capsule");
+
+        switch(direction){
+
+            case Haut:
+                if(0 <= (position.getY() - 1)){
+
+                    if( (this.jeu.getEntite(position.getX(), position.getY() - 1).getTypeCase()).equals(Feu) ){
+
+                        if(this.jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Capsule) != 0){
+
+                            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
+                            System.out.println(this.jeu.getEntite(position.getX(), position.getY() - 1).getTypeCase() + " Haut");
+                        }
+                    }
+                }
+                break;
+
+            case Droite:
+                if((position.getX() + 1) < jeu.SIZE.getX()){
+
+                    if( (this.jeu.getEntite(position.getX()+1, position.getY()).getTypeCase()).equals(Feu) ){
+
+                        if(this.jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Capsule) != 0){
+
+                            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
+                            System.out.println(this.jeu.getEntite(position.getX() + 1, position.getY()).getTypeCase() + " Droite");
+                        }
+                    }
+                }
+                break;
+
+            case Bas:
+                if((position.getY() + 1) < jeu.SIZE.getY()){
+
+                    if( (this.jeu.getEntite(position.getX(), position.getY() + 1).getTypeCase()).equals(Feu) ){
+
+                        if(this.jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Capsule) != 0){
+
+                            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
+                            System.out.println(this.jeu.getEntite(position.getX(), position.getY() + 1).getTypeCase() + " Bas");
+                        }
+                    }
+                }
+                break;
+
+            case Gauche:
+                if(0 <= (position.getX() - 1)){
+
+                    if( (this.jeu.getEntite(position.getX() - 1, position.getY()).getTypeCase()).equals(Feu) ){
+
+                        if(this.jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Capsule) != 0){
+
+                            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Capsule, 1);
+                            System.out.println(this.jeu.getEntite(position.getX() - 1, position.getY()).getTypeCase() + " Gauche");
+                        }
+                    }
+                }
+                break;
+
+            case All:
+            default:
+
+                throw new Exception("Lancement impossible, la direction n'a pas été affectée correctement");
+        }
+
     }
 }
