@@ -104,11 +104,10 @@ public class VueInventaire extends JDialog implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent actionEvent){
-        System.out.print("Click ");
+
         Object source = actionEvent.getSource();
         if(source.equals(recuperer)){
 
-            System.out.print("recup" + "\n");
             try{
 
                 jeu.getHeros().getInventaire().recupererInventaire(this.inventaire);
@@ -121,7 +120,6 @@ public class VueInventaire extends JDialog implements ActionListener{
         }
         else if(source.equals(pasRecuperer)){
 
-            System.out.print("pasRecup" + "\n");
             dispose();
         }
     }

@@ -14,6 +14,7 @@ public enum TypeCase{
     Feu,            // 7: Case à usage unique enflammée, nécessite une capsule d'eau pour la retraverser
     PorteOuvert,    // 8: Porte ouverte
     PorteEtage,     // 9: Porte de changement d'étage
+    CoffreOuvert,   // 10: Coffre déja fouillé ne peut être instancié dans un fichier .salle
     All
 }
 

@@ -32,7 +32,6 @@ public class Coffre extends EntiteStatique{
          ******************************/
     private void remplirAleatoirementCoffre() {
 
-        // TODO faire en sorte que l'inventaire du coffre se remplisse avec des quantités aléatoires
         inventaire = new Inventaire();
         for(int i = 0; i < Inventaire.Element.All.ordinal(); ++i){
 
@@ -56,15 +55,6 @@ public class Coffre extends EntiteStatique{
         return etat;
     }
 
-        /*****************
-         * GetInventaire *
-         *****************/
-    //  TODO A adapter suivant comment on gère les coffres
-    public Inventaire getInventaire(){
-
-        return inventaire;
-    }
-
         /****************
          * OuvrirCoffre *
          ****************/
@@ -72,12 +62,11 @@ public class Coffre extends EntiteStatique{
 
         if(etat.equals(EtatSerrure.Ferme)){
 
-            if(this.jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle) != 0){
-
-                this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
-                etat = EtatSerrure.Ouvert;
-            }
+            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
+            etat = EtatSerrure.Ouvert;
         }
+
+        this.type = TypeCase.CoffreOuvert;
 
         return true;
     }

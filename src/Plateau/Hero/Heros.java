@@ -99,11 +99,7 @@ public class Heros{
             position.move(this.direction);
 
             EntiteStatique entite =  jeu.getEntite(position.getCoord());
-
-            if((entite.getTypeCase() == TypeCase.Unique) || (entite.getTypeCase() == TypeCase.Coffre)){
-
-                jeu.getEntite(position.getCoord()).updateCase();
-            }
+            jeu.getEntite(position.getCoord()).updateCase();
         }
     }
 
@@ -194,7 +190,7 @@ public class Heros{
             throw new Exception("Heros::sauter - Lancement impossible, la direction n'a pas été affectée correctement");
         }
 
-        EntiteStatique entite = this.jeu.getEntite(coord.x, coord.y);
+        EntiteStatique entite = this.jeu.getEntite(coord);
         if((entite.getTypeCase() == TypeCase.Vide)){
 
 
@@ -204,14 +200,11 @@ public class Heros{
                 throw new Exception("Heros::sauter - Lancement impossible, la direction n'a pas été affectée correctement");
             }
 
-            EntiteStatique entite2 = this.jeu.getEntite(coord2.x, coord2.y);
+            EntiteStatique entite2 = this.jeu.getEntite(coord2);
             if((entite2.getTypeCase() == TypeCase.Normale) || (entite2.getTypeCase() == TypeCase.Cle) || (entite2.getTypeCase() == TypeCase.Unique)){
 
                 position.setPosition(coord2);
-                if(entite2.getTypeCase() == TypeCase.Unique || entite2.getTypeCase() == TypeCase.Cle){
-
-                    jeu.getEntite(coord2).updateCase();
-                }
+                jeu.getEntite(position.getCoord()).updateCase();
             }
         }
     }

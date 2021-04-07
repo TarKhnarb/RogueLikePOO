@@ -87,7 +87,7 @@ public class Salle{
                 return new Coffre(jeu, EtatSerrure.Ouvert, this.jeu.getPartie().getEtage().getSeed());
 
             case Cle:
-                return new CaseNormale(jeu, true, this.jeu.getPartie().getEtage().getSeed());
+                return new CaseCle(jeu, this.jeu.getPartie().getEtage().getSeed());
 
             case Unique:
                 return new CaseUnique(jeu,false);

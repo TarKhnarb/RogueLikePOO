@@ -77,7 +77,6 @@ public class Inventaire{
         if(inventaire[elmt.ordinal()] >= nb){
 
             inventaire[elmt.ordinal()] -= nb;
-
         }
         else{
 
