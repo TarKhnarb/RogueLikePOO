@@ -16,6 +16,8 @@ public class Jeu extends Observable implements Runnable{
          * Variables *
          *************/
     public static final Taille SIZE = new Taille(21, 11);
+    public static int NBCAPSULES = 3;
+    public static int NBCLE = 2;
 
     private final int pause = 10; // période de rafraichissement
 

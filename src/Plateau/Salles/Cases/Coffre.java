@@ -62,11 +62,14 @@ public class Coffre extends EntiteStatique{
 
         if(etat.equals(EtatSerrure.Ferme)){
 
-            this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
-            etat = EtatSerrure.Ouvert;
-        }
+            if(jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle) > 0){
 
-        this.type = TypeCase.CoffreOuvert;
+                this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
+                etat = EtatSerrure.Ouvert;
+
+                this.type = TypeCase.CoffreOuvert;
+            }
+        }
 
         return true;
     }

@@ -30,8 +30,8 @@ public class Heros{
 
         try{
 
-            this.inventaire.ajouterNElement(Inventaire.Element.Cle, 4);
-            this.inventaire.ajouterNElement(Inventaire.Element.Capsule, 10);
+            this.inventaire.ajouterNElement(Inventaire.Element.Cle, Jeu.NBCLE);
+            this.inventaire.ajouterNElement(Inventaire.Element.Capsule, Jeu.NBCAPSULES);
         }
         catch(Exception e){
 
@@ -132,6 +132,8 @@ public class Heros{
 
                 throw new Exception("Heros::lancerCapsule - Changement de salle impossible,  la direction n'a pas été affectée correctement");
         }
+
+        inventaire.setInventaire(Inventaire.Element.Capsule, Jeu.NBCAPSULES);
     }
 
         /***************

@@ -84,7 +84,7 @@ public class Salle{
                 return new Porte(jeu, direction, EtatSerrure.Ferme);
 
             case Coffre:
-                return new Coffre(jeu, EtatSerrure.Ouvert, this.jeu.getPartie().getEtage().getSeed());
+                return new Coffre(jeu, EtatSerrure.Ferme, this.jeu.getPartie().getEtage().getSeed());
 
             case Cle:
                 return new CaseCle(jeu, this.jeu.getPartie().getEtage().getSeed());

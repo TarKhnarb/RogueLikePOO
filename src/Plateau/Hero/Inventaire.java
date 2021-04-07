@@ -67,6 +67,11 @@ public class Inventaire{
         return inventaire[elmt.ordinal()];
     }
 
+    public void setInventaire(Element elmt, int valeur) throws ArrayIndexOutOfBoundsException{
+
+        inventaire[elmt.ordinal()] = Math.abs(valeur);
+    }
+
         /*******************
          * EnleverNElement *
          *******************/
