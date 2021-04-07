@@ -35,7 +35,7 @@ public class Inventaire{
 
         for(int i = 0; i < Element.All.ordinal(); ++i){
 
-            inventaire[i] = 50000;
+            inventaire[i] = 0;
         }
     }
 
@@ -45,6 +45,20 @@ public class Inventaire{
     public int getTaille(){
 
         return Element.All.ordinal();
+    }
+
+    public int nombreObjets(){
+
+        int cpt = 0;
+        for(int i = 0; i < Element.All.ordinal(); ++i){
+
+            if(inventaire[i] != 0){
+
+                ++cpt;
+            }
+        }
+
+        return cpt;
     }
 
         /*****************

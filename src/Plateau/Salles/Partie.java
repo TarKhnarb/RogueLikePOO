@@ -59,6 +59,14 @@ public class Partie{
         centrerPosition();
     }
 
+        /************
+         * GetEtage *
+         ************/
+    public Etage getEtage(){
+
+        return etage;
+    }
+
         /***************
          * NouvelEtage *
          ***************/

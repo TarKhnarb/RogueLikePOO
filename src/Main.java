@@ -1,7 +1,5 @@
-import VueControleur.VueControleur;
 import Plateau.Jeu;
-
-import java.io.FileNotFoundException;
+import VueControleur.VueControleur;
 
 /*
  * To change this license header, choose License Headers in Project Properties.

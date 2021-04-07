@@ -301,8 +301,6 @@ public class VueControleur extends JFrame implements Observer{
     @Override
     public void update(Observable o, Object arg){
 
-        //mettreAJourAffichage();
-
         SwingUtilities.invokeLater(new Runnable(){
                     @Override
                     public void run(){

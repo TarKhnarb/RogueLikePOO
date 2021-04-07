@@ -6,6 +6,7 @@ import Plateau.Jeu;
 import Plateau.Salles.Cases.*;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Salle{
@@ -50,6 +51,9 @@ public class Salle{
     private Taille taille;
     private Jeu jeu;
 
+    private ArrayList<Coffre> coffres;
+    private ArrayList<CaseNormale> cles;
+
         /****************
          * Constructeur *
          ****************/
@@ -71,7 +75,7 @@ public class Salle{
         switch(type){
 
             case Normale:
-                return new CaseNormale(jeu, false);
+                return new CaseNormale(jeu);
 
             case Vide:
                 return new CaseVide(jeu);
@@ -80,10 +84,10 @@ public class Salle{
                 return new Porte(jeu, direction, EtatSerrure.Ferme);
 
             case Coffre:
-                return new Coffre(jeu, EtatSerrure.Ouvert);
+                return new Coffre(jeu, EtatSerrure.Ouvert, this.jeu.getPartie().getEtage().getSeed());
 
             case Cle:
-                return new CaseNormale(jeu, true);
+                return new CaseNormale(jeu, true, this.jeu.getPartie().getEtage().getSeed());
 
             case Unique:
                 return new CaseUnique(jeu,false);
@@ -130,9 +134,9 @@ public class Salle{
         }
     }
 
-    /***************
-     * PlacePortes *
-     ***************/
+        /***************
+         * PlacePortes *
+         ***************/
     private void placePortes(){
 
         for(int i = 0; i < Direction.All.ordinal(); ++i){

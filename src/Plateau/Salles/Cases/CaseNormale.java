@@ -9,17 +9,35 @@ public class CaseNormale extends EntiteStatique{
          * Variables *
          *************/
     private boolean cle;
+    private int seed;
 
-        /****************
-         * Constructeur *
-         ****************/
-    public CaseNormale(Jeu jeu, boolean cle){
+        /*****************
+         * Constructeurs *
+         *****************/
+    public CaseNormale(Jeu jeu){
 
         super(jeu);
 
-        this.cle = cle;
+        this.cle = false;
 
-        this.type = (cle ? TypeCase.Cle : TypeCase.Normale);
+        this.type = TypeCase.Normale;
+    }
+
+    public CaseNormale(Jeu jeu, boolean cle, int seed){
+
+        super(jeu);
+
+        this.seed = seed;
+        this.cle = (cle && randomCle());
+        this.type = (this.cle ? TypeCase.Cle : TypeCase.Normale);
+    }
+
+        /*************
+         * RandomCle *
+         *************/
+    private boolean randomCle(){
+
+        return (((seed%(Math.random()*5 + 1)) + 1)%2 == 1); // 3 chances/5
     }
 
         /**********

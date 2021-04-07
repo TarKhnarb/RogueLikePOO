@@ -212,6 +212,11 @@ public class Etage{
         }
     }
 
+    public int getSeed(){
+
+        return seed;
+    }
+
         /***********
          * SetSeed *
          ***********/

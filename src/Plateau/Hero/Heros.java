@@ -36,6 +36,16 @@ public class Heros{
 
         this.inventaire = new Inventaire();
         this.direction = Direction.Bas;
+
+        try{
+
+            this.inventaire.ajouterNElement(Inventaire.Element.Cle, 4);
+            this.inventaire.ajouterNElement(Inventaire.Element.Capsule, 10);
+        }
+        catch(Exception e){
+
+            e.printStackTrace();
+        }
     }
 
         /********
@@ -88,7 +98,9 @@ public class Heros{
 
             position.move(this.direction);
 
-            if(jeu.getEntite(position.getCoord()).getTypeCase() == TypeCase.Unique){
+            EntiteStatique entite =  jeu.getEntite(position.getCoord());
+
+            if((entite.getTypeCase() == TypeCase.Unique) || (entite.getTypeCase() == TypeCase.Coffre)){
 
                 jeu.getEntite(position.getCoord()).updateCase();
             }
@@ -164,13 +176,15 @@ public class Heros{
 
             if( inventaire.getInventaire(Inventaire.Element.Capsule) != 0){
 
-                //System.out.println(this.jeu.getEntite(coord.x, coord.y).getTypeCase() + " " + direction.name());
                 inventaire.enleverNElement(Inventaire.Element.Capsule, 1);
                 this.jeu.getEntite(coord.x, coord.y).updateCase();
             }
         }
     }
 
+        /**********
+         * Sauter *
+         **********/
     public void sauter() throws Exception{
 
         Coordonnee coord = position.getCoord(direction);
@@ -194,6 +208,10 @@ public class Heros{
             if((entite2.getTypeCase() == TypeCase.Normale) || (entite2.getTypeCase() == TypeCase.Cle) || (entite2.getTypeCase() == TypeCase.Unique)){
 
                 position.setPosition(coord2);
+                if(entite2.getTypeCase() == TypeCase.Unique){
+
+                    jeu.getEntite(coord2).updateCase();
+                }
             }
         }
     }

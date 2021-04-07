@@ -45,8 +45,8 @@ public class CaseUnique extends EntiteStatique{
         }
         else{
 
-            this.type = TypeCase.Feu;
             feu = true;
+            this.type = TypeCase.Feu;
         }
 
         return true;

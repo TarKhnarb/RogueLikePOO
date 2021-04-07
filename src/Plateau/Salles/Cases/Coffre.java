@@ -2,6 +2,7 @@ package Plateau.Salles.Cases;
 
 import Plateau.Hero.Inventaire;
 import Plateau.Jeu;
+import VueControleur.VueInventaire;
 
 public class Coffre extends EntiteStatique{
 
@@ -10,15 +11,17 @@ public class Coffre extends EntiteStatique{
          *************/
     private EtatSerrure etat;
     private Inventaire inventaire;
+    private int seed;
 
         /****************
          * Constructeur *
          ****************/
-    public Coffre(Jeu jeu, EtatSerrure etat){
+    public Coffre(Jeu jeu, EtatSerrure etat, int seed){
 
         super(jeu);
 
         this.etat = etat;
+        this.seed = seed;
 
         remplirAleatoirementCoffre();
         this.type = TypeCase.Coffre;
@@ -29,7 +32,20 @@ public class Coffre extends EntiteStatique{
          ******************************/
     private void remplirAleatoirementCoffre() {
 
-        // TODO faire en sorte que l'inventaire du coffre seremplisse avec des quantités aléatoires
+        // TODO faire en sorte que l'inventaire du coffre se remplisse avec des quantités aléatoires
+        inventaire = new Inventaire();
+        for(int i = 0; i < Inventaire.Element.All.ordinal(); ++i){
+
+            try{
+
+                int nb = (int) ((seed%(Math.random()*3 + 1)) + 1);
+                inventaire.ajouterNElement(Inventaire.Element.values()[i], nb);
+            }
+            catch (Exception e){
+
+                e.printStackTrace();
+            }
+        }
     }
 
         /***********
@@ -63,7 +79,7 @@ public class Coffre extends EntiteStatique{
             }
         }
 
-        return false;
+        return true;
     }
 
         /***************
@@ -74,5 +90,16 @@ public class Coffre extends EntiteStatique{
     public boolean traversable() throws Exception{
 
         return ouvrirCoffre();
+    }
+
+    @Override
+    public boolean updateCase() throws Exception{
+
+        if(inventaire.nombreObjets() != 0){
+
+            new VueInventaire(jeu, inventaire);
+        }
+
+        return true;
     }
 }

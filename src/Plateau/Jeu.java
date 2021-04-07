@@ -3,8 +3,8 @@ package Plateau;
 import Outils.Coordonnee;
 import Outils.Position;
 import Outils.Taille;
-import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Hero.Heros;
+import Plateau.Salles.Cases.EntiteStatique;
 import Plateau.Salles.Partie;
 
 import java.io.FileNotFoundException;
