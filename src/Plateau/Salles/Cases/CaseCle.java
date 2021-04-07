@@ -5,12 +5,11 @@ import Plateau.Jeu;
 
 public class CaseCle extends EntiteStatique{
 
-    /*************
-     * Variables *
-     *************/
+        /*************
+         * Variables *
+         *************/
     private boolean cle;
     private int seed;
-
 
         /****************
          * Constructeur *
@@ -24,18 +23,18 @@ public class CaseCle extends EntiteStatique{
         this.type = (this.cle ? TypeCase.Cle : TypeCase.Normale);
     }
 
-    /*************
-     * RandomCle *
-     *************/
+        /*************
+         * RandomCle *
+         *************/
     private boolean randomCle(){
 
         int rand = (int)(Math.random()*5);
         return (((seed%(rand + 1)) + 1)%2 == 1); // 3 chances/5
     }
 
-    /**********
-     * GetCle *
-     **********/
+        /**********
+         * GetCle *
+         **********/
     private void getCle() throws Exception{
 
         if(cle){
@@ -45,6 +44,10 @@ public class CaseCle extends EntiteStatique{
             this.type = TypeCase.Normale;
         }
     }
+
+        /***************
+         * Traversable *
+         ***************/
     @Override
     public boolean traversable() throws Exception{
 
@@ -56,6 +59,9 @@ public class CaseCle extends EntiteStatique{
         return true;
     }
 
+        /**************
+         * UpdateCase *
+         **************/
     @Override
     public boolean updateCase() throws Exception {
 

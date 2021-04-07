@@ -35,7 +35,6 @@ public class Jeu extends Observable implements Runnable{
 
     public Jeu(Jeu jeu){
 
-        System.out.println("Numero etagenouvelle partie: " + jeu.partie.getNumeroEtage());
         this.heros = jeu.heros;
         initialisationDesEntites();
     }
@@ -142,7 +141,7 @@ public class Jeu extends Observable implements Runnable{
          *******/
     public void run(){
 
-        // TODO mettre en place un micro menu avec un choix pour commencer la partie
+        // TODO mettre en place un micro menu pour commencer la partie
 
         while(partie.partieEnCours()){
 
@@ -165,10 +164,11 @@ public class Jeu extends Observable implements Runnable{
             }
         }
 
+        // TODO mettre un message "Bien jouer""
+
         System.out.println("Partie terminée");
         initialisationDesEntites();
         start();
 
-        // TODO mettre un message "Bien jouer""
     }
 }

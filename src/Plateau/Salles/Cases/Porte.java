@@ -15,7 +15,6 @@ public class Porte extends EntiteStatique{
         /****************
          * Constructeur *
          ****************/
-    // TODO Voir si on ne met pas de base les portes fermées
     public Porte(Jeu jeu, Direction direction, EtatSerrure etat){
 
         super(jeu);
@@ -54,6 +53,7 @@ public class Porte extends EntiteStatique{
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
                 etat = EtatSerrure.Ouvert;
                 setType(TypeCase.PorteOuvert);
+
                 return false;
             }
 
@@ -62,11 +62,13 @@ public class Porte extends EntiteStatique{
         else if(etat.equals(EtatSerrure.Ouvert)){
 
             jeu.getPartie().changerSalle(this.direction);
+
             return true;
         }
         else{
 
             jeu.getPartie().changerEtage();
+
             return true;
         }
     }
@@ -77,9 +79,7 @@ public class Porte extends EntiteStatique{
     @Override
     public boolean traversable() throws Exception{
 
-        // TODO Voir quoi choisir entre les deux. voir même si ouvrirPorte() est correcte
         return ouvrirPorte();
-        //return (etat.equals(EtatSerrure.Ouvert));
     }
 
         /************

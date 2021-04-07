@@ -2,9 +2,6 @@ package Plateau.Salles.Cases;
 
 import Plateau.Jeu;
 
-/**
- * Ne bouge pas (murs...)
- */
 public abstract class EntiteStatique{
 
         /*************

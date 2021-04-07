@@ -22,9 +22,9 @@ public class Coffre extends EntiteStatique{
 
         this.etat = etat;
         this.seed = seed;
+        this.type = TypeCase.Coffre;
 
         remplirAleatoirementCoffre();
-        this.type = TypeCase.Coffre;
     }
 
         /******************************
@@ -81,6 +81,9 @@ public class Coffre extends EntiteStatique{
         return ouvrirCoffre();
     }
 
+        /**************
+         * UpdateCase *
+         **************/
     @Override
     public boolean updateCase() throws Exception{
 

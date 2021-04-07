@@ -1,6 +1,5 @@
 package Plateau.Salles.Cases;
 
-import Plateau.Hero.Inventaire;
 import Plateau.Jeu;
 
 public class CaseNormale extends EntiteStatique{
@@ -14,7 +13,6 @@ public class CaseNormale extends EntiteStatique{
 
         this.type = TypeCase.Normale;
     }
-
 
         /***************
          * Traversable *

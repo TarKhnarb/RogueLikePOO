@@ -13,24 +13,18 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Outils.Coordonnee;
 import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Hero.*;
 import Plateau.Salles.Cases.*;
 
-/** Cette classe a deux fonctions :
- *  (1) Vue : proposer une représentation graphique de l'application (cases graphiques, etc.)
- *  (2) Controleur : écouter les évènements clavier et déclencher le traitement adapté sur le modèle (flèches direction, etc.))
- */
 public class VueControleur extends JFrame implements Observer{
 
         /*************
          * Variables *
          *************/
     private Jeu jeu; // référence sur une classe de modèle : permet d'accéder aux données du modèle pour le rafraichissement, permet de communiquer les actions clavier (ou souris)
-
     private Taille size; //Taille de la grille à afficher
 
         // icones affichées dans la grille
@@ -251,9 +245,6 @@ public class VueControleur extends JFrame implements Observer{
         panel.add(grilleJLabels);
     }
 
-    /**
-     * Il y a une grille du côté du modèle ( jeu.getGrille() ) et une grille du côté de la vue (tabJLabel)
-     */
         /************************
          * MettreAJourAffichage *
          ************************/

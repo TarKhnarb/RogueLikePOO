@@ -1,7 +1,8 @@
 package Plateau.Salles.Cases;
 
-import Plateau.Jeu;
-
+    /*************************
+     * Enumération: TypeCase *
+     *************************/
 public enum TypeCase{
 
     Mur,            // 0: Mur, non Tranversable

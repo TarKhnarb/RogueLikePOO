@@ -23,12 +23,13 @@ import java.util.Scanner;
  *   entier1: nombre minimal de salle sur l'étage
  *   entier2: nombre maximal de salle sur l'étage
  */
+// TODO augmenter lenombre de niveaux, faire en sorte que le nombre de salle augmente de niveau en niveau
 
 public class Partie{
 
-    /***************************
-     * Enumération: InfoPartie *
-     ***************************/
+        /***************************
+         * Enumération: InfoPartie *
+         ***************************/
     public enum InfoPartie{
 
         MinSalles,
@@ -82,7 +83,6 @@ public class Partie{
          ****************/
     private void genererEtage() throws Exception{
 
-        System.out.println(numeroEtage);
         etage.genererEtage();
     }
 
@@ -94,7 +94,7 @@ public class Partie{
         ++numeroEtage;
         if(partieEnCours()){
 
-            System.out.println("Je change d'étages: " + numeroEtage);
+            System.out.println("Je charge l'étages n°" + numeroEtage);
             try{
 
                 nouvelEtage();
@@ -154,7 +154,6 @@ public class Partie{
         int cpt = 0;
 
         Scanner scanner = new Scanner(new File("data/Parties/Reglages.partie"));
-
         if(scanner.hasNextInt()){
 
             this.tailleEtage = scanner.nextInt();
@@ -205,6 +204,7 @@ public class Partie{
 
                 retour += "     " + InfoPartie.values()[i].name() + ": " + informations.get(i).get(j) + "\n";
             }
+
             retour += "\n";
         }
 

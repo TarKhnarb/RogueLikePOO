@@ -1,7 +1,5 @@
 package Plateau.Hero;
 
-
-
 public class Inventaire{
 
         /************************
@@ -13,9 +11,9 @@ public class Inventaire{
         Capsule,
         All
     }
-        /*************
-         * Variables *
-         *************/
+        /************
+         * Variable *
+         ************/
     private int[] inventaire;
 
         /****************

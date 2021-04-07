@@ -48,7 +48,6 @@ public class VueInventaire extends JDialog implements ActionListener{
 
             if(this.inventaire.getInventaire(Inventaire.Element.values()[i]) != 0){
 
-
                 JLabel label = new JLabel();
                 inventaireLabel[0][placementObj] = label;
                 inventaireLabel[0][placementObj + 1] = label;
@@ -77,14 +76,15 @@ public class VueInventaire extends JDialog implements ActionListener{
 
         panel.add(panelBut);
 
+            // Fenêtre de dialogue
         this.add(panel);
         this.setVisible(true);
     }
 
 
-    /****************
-     * ChargerIcone *
-     ****************/
+        /****************
+         * ChargerIcone *
+         ****************/
     private ImageIcon chargerIcone(String urlIcone){
 
         BufferedImage image = null;
@@ -102,6 +102,10 @@ public class VueInventaire extends JDialog implements ActionListener{
         return new ImageIcon(image);
     }
 
+
+        /*******************
+         * ActionPerformed *
+         *******************/
     @Override
     public void actionPerformed(ActionEvent actionEvent){
 
