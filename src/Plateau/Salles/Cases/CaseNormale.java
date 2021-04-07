@@ -37,7 +37,9 @@ public class CaseNormale extends EntiteStatique{
          *************/
     private boolean randomCle(){
 
-        return (((seed%(Math.random()*5 + 1)) + 1)%2 == 1); // 3 chances/5
+        int rand = (int)(Math.random()*5);
+        System.out.println(((seed%(rand + 1)) + 1)%2);
+        return (((seed%(rand + 1)) + 1)%2 == 1); // 3 chances/5
     }
 
         /**********

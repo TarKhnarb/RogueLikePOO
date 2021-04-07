@@ -208,7 +208,7 @@ public class Heros{
             if((entite2.getTypeCase() == TypeCase.Normale) || (entite2.getTypeCase() == TypeCase.Cle) || (entite2.getTypeCase() == TypeCase.Unique)){
 
                 position.setPosition(coord2);
-                if(entite2.getTypeCase() == TypeCase.Unique){
+                if(entite2.getTypeCase() == TypeCase.Unique || entite2.getTypeCase() == TypeCase.Cle){
 
                     jeu.getEntite(coord2).updateCase();
                 }
