@@ -17,7 +17,9 @@ public class Jeu extends Observable implements Runnable{
          *************/
     public static final Taille SIZE = new Taille(21, 11);
 
-    private int pause = 10; // période de rafraichissement
+    private final int pause = 10; // période de rafraichissement
+
+    private boolean restart = false;
 
     private Heros heros;
     private Partie partie;
@@ -119,6 +121,15 @@ public class Jeu extends Observable implements Runnable{
     }
 
         /*********
+         * Restart *
+         *********/
+    public void restart(){
+
+        restart=true;
+        nouveauHero();
+    }
+
+        /*********
          * Start *
          *********/
     public void start(){
@@ -137,6 +148,12 @@ public class Jeu extends Observable implements Runnable{
 
             setChanged();
             notifyObservers();
+
+            if (restart){
+
+                restart=false;
+                break;
+            }
 
             try{
 

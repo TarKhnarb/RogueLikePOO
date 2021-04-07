@@ -121,11 +121,21 @@ public class VueControleur extends JFrame implements Observer{
                         }
                         break;
 
-
                     case KeyEvent.VK_SPACE:
                         try{
 
                             jeu.getHeros().sauter();
+                        }
+                        catch(Exception exception){
+
+                            exception.printStackTrace();
+                        }
+                        break;
+
+                    case KeyEvent.VK_R:
+                        try{
+
+                            jeu.restart();
                         }
                         catch(Exception exception){
 
