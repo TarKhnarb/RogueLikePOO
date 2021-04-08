@@ -1,6 +1,6 @@
 package Plateau.Salles;
 
-import Outils.Taille;
+import Outils.Coordonnee;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Salles.Cases.*;
@@ -48,22 +48,19 @@ public class Salle{
     private Type type;
     private EntiteStatique[][] grille;
     private Porte[] portes;
-    private Taille taille;
+    private Coordonnee taille;
     private Jeu jeu;
-
-    private ArrayList<Coffre> coffres;
-    private ArrayList<CaseNormale> cles;
 
         /****************
          * Constructeur *
          ****************/
-    public Salle(Type type, Taille taille, Jeu jeu){
+    public Salle(Type type, Coordonnee taille, Jeu jeu){
 
         this.type = type;
         this.taille = taille;
         this.jeu = jeu;
 
-        this.grille = new EntiteStatique[taille.getX()][taille.getY()];
+        this.grille = new EntiteStatique[taille.x][taille.y];
         this.portes = new Porte[4];
     }
 
@@ -116,7 +113,7 @@ public class Salle{
 
             return Direction.Gauche;
         }
-        else if(x == taille.getX() - 1){
+        else if(x == taille.x - 1){
 
             return Direction.Droite;
         }
@@ -124,7 +121,7 @@ public class Salle{
 
             return Direction.Haut;
         }
-        else if(y == taille.getY() - 1){
+        else if(y == taille.y - 1){
 
             return Direction.Bas;
         }
@@ -146,19 +143,19 @@ public class Salle{
                 switch(Direction.values()[i]){
 
                     case Haut:
-                        grille[(jeu.SIZE.getX() - 1)/2][0] = portes[i];
+                        grille[(jeu.SIZE.x - 1)/2][0] = portes[i];
                         break;
 
                     case Droite:
-                        grille[Jeu.SIZE.getX() - 1][(Jeu.SIZE.getY() - 1)/2] = portes[i];
+                        grille[Jeu.SIZE.x - 1][(Jeu.SIZE.y - 1)/2] = portes[i];
                         break;
 
                     case Bas:
-                        grille[(jeu.SIZE.getX() - 1)/2][jeu.SIZE.getY() - 1] = portes[i];
+                        grille[(jeu.SIZE.x - 1)/2][jeu.SIZE.y - 1] = portes[i];
                         break;
 
                     case Gauche:
-                        grille[0][(Jeu.SIZE.getY() - 1)/2] = portes[i];
+                        grille[0][(Jeu.SIZE.y - 1)/2] = portes[i];
                         break;
 
                     case All:
@@ -176,9 +173,9 @@ public class Salle{
 
         Scanner scanner = new Scanner(new File("data/Salles/Salle_" + this.type.name() + ".salle"));
 
-        for(int y = 0; y < Jeu.SIZE.getY(); ++y){
+        for(int y = 0; y < Jeu.SIZE.y; ++y){
 
-            for(int x = 0; x < Jeu.SIZE.getX(); ++x){
+            for(int x = 0; x < Jeu.SIZE.x; ++x){
 
                 if(scanner.hasNextInt()){
 
@@ -350,9 +347,9 @@ public class Salle{
 
         String retour = "";
 
-        for(int y = 0; y < taille.getY(); ++y){
+        for(int y = 0; y < taille.y; ++y){
 
-            for(int x = 0; x < taille.getX(); ++x){
+            for(int x = 0; x < taille.x; ++x){
 
                 if(grille[x][y] != null){
 

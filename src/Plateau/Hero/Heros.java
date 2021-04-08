@@ -109,22 +109,22 @@ public class Heros{
 
             case Haut:
 
-                position.setPosition(new Coordonnee((Jeu.SIZE.getX() - 1)/2, Jeu.SIZE.getY() - 1)); // Bas
+                position.setPosition(new Coordonnee((Jeu.SIZE.x - 1)/2, Jeu.SIZE.y - 1)); // Bas
                 break;
 
             case Droite:
 
-                position.setPosition(new Coordonnee(0, (Jeu.SIZE.getY() - 1)/2)); //Gauche
+                position.setPosition(new Coordonnee(0, (Jeu.SIZE.y - 1)/2)); //Gauche
                 break;
 
             case Bas:
 
-                position.setPosition(new Coordonnee((Jeu.SIZE.getX() - 1)/2, 0)); //Haut
+                position.setPosition(new Coordonnee((Jeu.SIZE.x - 1)/2, 0)); //Haut
                 break;
 
             case Gauche:
 
-                position.setPosition(new Coordonnee(Jeu.SIZE.getX() - 1, (Jeu.SIZE.getY() - 1)/2));
+                position.setPosition(new Coordonnee(Jeu.SIZE.x - 1, (Jeu.SIZE.y - 1)/2));
                 break;
 
             case All:

@@ -16,8 +16,8 @@ public class Etage{
     private int taille;
     private Salle[][] etage;
     private int seed;
-    private final int minSalle;
-    private final int maxSalle;
+    private final int minSalles;
+    private final int maxSalles;
 
         /****************
          * Constructeur *
@@ -26,8 +26,8 @@ public class Etage{
 
         this.jeu = jeu;
         this.taille = taille;
-        this.minSalle = minSalles;
-        this.maxSalle = maxSalles;
+        this.minSalles = minSalles;
+        this.maxSalles = maxSalles;
 
         if(maxSalles >= taille*taille){
 
@@ -45,7 +45,7 @@ public class Etage{
     public void genererEtage() throws Exception{
 
         setSeed();
-        int nombreSalles = (int)(Math.random() * (maxSalle - minSalle + 1)) + minSalle;
+        int nombreSalles = (int)(Math.random() * (maxSalles - minSalles + 1)) + minSalles;
         int compteurSalles = 2; // Salle de départ et fin déja comptées
         int entropy = 2;        // ATTENTION mini = 1
         int milieu = (taille - 1)/2;
@@ -183,6 +183,9 @@ public class Etage{
         placerCases();
     }
 
+        /***************
+         * PlacerCases *
+         ***************/
     private void placerCases() throws FileNotFoundException{
 
         for(int y = 0; y < taille; ++y){
@@ -212,6 +215,9 @@ public class Etage{
         }
     }
 
+        /***********
+         * GetSeed *
+         ***********/
     public int getSeed(){
 
         return seed;

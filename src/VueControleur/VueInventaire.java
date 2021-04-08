@@ -81,7 +81,6 @@ public class VueInventaire extends JDialog implements ActionListener{
         this.setVisible(true);
     }
 
-
         /****************
          * ChargerIcone *
          ****************/
@@ -101,7 +100,6 @@ public class VueInventaire extends JDialog implements ActionListener{
 
         return new ImageIcon(image);
     }
-
 
         /*******************
          * ActionPerformed *

@@ -29,7 +29,7 @@ public class Inventaire{
         /******************
          * InitInventaire *
          ******************/
-    public void initInventaire(){
+    private void initInventaire(){
 
         for(int i = 0; i < Element.All.ordinal(); ++i){
 
@@ -45,6 +45,9 @@ public class Inventaire{
         return Element.All.ordinal();
     }
 
+        /****************
+         * NombreObjets *
+         ****************/
     public int nombreObjets(){
 
         int cpt = 0;
@@ -67,6 +70,9 @@ public class Inventaire{
         return inventaire[elmt.ordinal()];
     }
 
+        /*****************
+         * SetInventaire *
+         *****************/
     public void setInventaire(Element elmt, int valeur) throws ArrayIndexOutOfBoundsException{
 
         inventaire[elmt.ordinal()] = Math.abs(valeur);

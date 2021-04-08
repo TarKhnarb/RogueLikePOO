@@ -8,13 +8,13 @@ public class Position{
          * Variables *
          *************/
     private Coordonnee coordonnee;
-    private final Taille zoneMin;
-    private final Taille zoneMax;
+    private final Coordonnee zoneMin;
+    private final Coordonnee zoneMax;
 
         /****************
          * Constructeur *
          ****************/
-    public Position(Coordonnee coordonnee, Taille zoneMin, Taille zoneMax){
+    public Position(Coordonnee coordonnee, Coordonnee zoneMin, Coordonnee zoneMax){
 
         this.coordonnee = coordonnee;
         this.zoneMin = zoneMin;
@@ -26,7 +26,7 @@ public class Position{
          ***************/
     public void setPosition(Coordonnee coordonnee) throws Exception{
 
-        if((zoneMin.getX() <= coordonnee.x) && (coordonnee.x <= zoneMax.getX()) && (zoneMin.getY() <= coordonnee.y) && (coordonnee.y <= zoneMax.getY())){
+        if((zoneMin.x <= coordonnee.x) && (coordonnee.x <= zoneMax.x) && (zoneMin.y <= coordonnee.y) && (coordonnee.y <= zoneMax.y)){
 
             this.coordonnee = coordonnee;
         }
@@ -52,15 +52,10 @@ public class Position{
         return coordonnee.y;
     }
 
-    public Coordonnee getCoord(){
-
-        return coordonnee;
-    }
-
         /**************
          * GetZoneMin *
          **************/
-    public Taille getZoneMin(){
+    public Coordonnee getZoneMin(){
 
         return zoneMin;
     }
@@ -68,7 +63,7 @@ public class Position{
         /**************
          * GetZoneMax *
          **************/
-    public Taille getZoneMax(){
+    public Coordonnee getZoneMax(){
 
         return zoneMax;
     }
@@ -80,7 +75,7 @@ public class Position{
 
         Coordonnee coord = coordonnee.getCoord(direction);
 
-        if((zoneMin.getX() <= coord.x) && (coord.x <= zoneMax.getX()) && (zoneMin.getY() <= coord.y) && (coord.y <= zoneMax.getY())){
+        if((zoneMin.x <= coord.x) && (coord.x <= zoneMax.x) && (zoneMin.y <= coord.y) && (coord.y <= zoneMax.y)){
 
             this.coordonnee.setCoord(coord);
             return true;
@@ -89,44 +84,58 @@ public class Position{
         return false;
     }
 
+        /*******************
+         * CentrerDansZone *
+         *******************/
     public void centrerDansZone(){
 
-        if((zoneMax.getX() - zoneMin.getX())%2 == 0){
+        if((zoneMax.x - zoneMin.x)%2 == 0){
 
-            if((zoneMax.getY() - zoneMin.getY())%2 == 0){
+            if((zoneMax.y - zoneMin.y)%2 == 0){
 
-                coordonnee.x = (zoneMax.getX() - zoneMin.getX())/2;
-                coordonnee.y = (zoneMax.getY() - zoneMin.getY())/2;
+                coordonnee.x = (zoneMax.x - zoneMin.y)/2;
+                coordonnee.y = (zoneMax.y - zoneMin.y)/2;
             }
             else{
 
-                coordonnee.x = (zoneMax.getX() - zoneMin.getX())/2;
-                coordonnee.y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+                coordonnee.x = (zoneMax.x - zoneMin.x)/2;
+                coordonnee.y = (zoneMax.y - zoneMin.y - 1)/2;
             }
         }
         else{
 
-            if((zoneMax.getY() - zoneMin.getY())%2 == 0){
+            if((zoneMax.y - zoneMin.y)%2 == 0){
 
-                coordonnee.x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
-                coordonnee.y = (zoneMax.getY() - zoneMin.getY())/2;
+                coordonnee.x = (zoneMax.x - zoneMin.x - 1)/2;
+                coordonnee.y = (zoneMax.y - zoneMin.y)/2;
             }
             else{
 
-                coordonnee.x = (zoneMax.getX() - zoneMin.getX() - 1)/2;
-                coordonnee.y = (zoneMax.getY() - zoneMin.getY() - 1)/2;
+                coordonnee.x = (zoneMax.x - zoneMin.x - 1)/2;
+                coordonnee.y = (zoneMax.y - zoneMin.y - 1)/2;
             }
         }
     }
 
+        /************
+         * GetCoord *
+         ************/
     public Coordonnee getCoord(Direction direction){
 
         Coordonnee coord = coordonnee.getCoord(direction);
-        if((zoneMin.getX() <= coord.x) && (coord.x <= zoneMax.getX()) && (zoneMin.getY() <= coord.y) && (coord.y <= zoneMax.getY())){
+        if((zoneMin.x <= coord.x) && (coord.x <= zoneMax.x) && (zoneMin.y <= coord.y) && (coord.y <= zoneMax.y)){
 
             return coord;
         }
 
         return null;
+    }
+
+        /************
+         * GetCoord *
+         ************/
+    public Coordonnee getCoord(){
+
+        return coordonnee;
     }
 }

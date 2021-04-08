@@ -77,7 +77,6 @@ public class Coffre extends EntiteStatique{
         /***************
          * Traversable *
          ***************/
-    // TODO Voir si une clé est nécessaire pour ouvir un coffre
     @Override
     public boolean traversable() throws Exception{
 

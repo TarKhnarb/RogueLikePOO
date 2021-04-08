@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 
-import Outils.Taille;
+import Outils.Coordonnee;
 import Plateau.Direction;
 import Plateau.Jeu;
 import Plateau.Hero.*;
@@ -25,7 +25,7 @@ public class VueControleur extends JFrame implements Observer{
          * Variables *
          *************/
     private Jeu jeu; // référence sur une classe de modèle : permet d'accéder aux données du modèle pour le rafraichissement, permet de communiquer les actions clavier (ou souris)
-    private Taille size; //Taille de la grille à afficher
+    private Coordonnee size; //Taille de la grille à afficher
 
         // icones affichées dans la grille
     private ImageIcon[] iconHero;
@@ -191,7 +191,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(64*Jeu.SIZE.getX(), 64*Jeu.SIZE.getY() + 64);
+        setSize(64*Jeu.SIZE.x, 64*Jeu.SIZE.y + 64);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();
@@ -211,9 +211,9 @@ public class VueControleur extends JFrame implements Observer{
         Inventaire inventaire = jeu.getHeros().getInventaire();
         JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()*2));
 
-        inventaireLabel = new JLabel[1][size.getX()];
+        inventaireLabel = new JLabel[1][size.x];
 
-        for(int i = 1; i < size.getX(); ++i){
+        for(int i = 1; i < size.x; ++i){
 
             JLabel label = new JLabel();
             inventaireLabel[0][i] = label;
@@ -228,13 +228,13 @@ public class VueControleur extends JFrame implements Observer{
          ****************/
     private void placerGrille(JPanel panel){
 
-        JComponent grilleJLabels = new JPanel(new GridLayout(size.getY(), size.getX())); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
+        JComponent grilleJLabels = new JPanel(new GridLayout(size.y, size.x)); // grilleJLabels va contenir les cases graphiques et les positionner sous la forme d'une grille
 
-        tabJLabel = new JLabel[size.getX()][size.getY()];
+        tabJLabel = new JLabel[size.x][size.y];
 
-        for(int y = 0; y < size.getY(); ++y){
+        for(int y = 0; y < size.y; ++y){
 
-            for(int x = 0; x < size.getX(); ++x){
+            for(int x = 0; x < size.x; ++x){
 
                 JLabel jlab = new JLabel();
                 tabJLabel[x][y] = jlab; // on conserve les cases graphiques dans tabJLabel pour avoir un accès pratique à celles-ci (voir mettreAJourAffichage() )
@@ -274,9 +274,9 @@ public class VueControleur extends JFrame implements Observer{
          *********************/
     private void mettreAJourGrille(){
 
-        for(int x = 0; x < size.getX(); ++x){
+        for(int x = 0; x < size.x; ++x){
 
-            for(int y = 0; y < size.getY(); ++y){
+            for(int y = 0; y < size.y; ++y){
 
                 TypeCase type = TypeCase.All;
                 try{

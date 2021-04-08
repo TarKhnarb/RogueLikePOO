@@ -2,7 +2,6 @@ package Plateau.Salles;
 
 import Outils.Coordonnee;
 import Outils.Position;
-import Outils.Taille;
 import Plateau.Direction;
 import Plateau.Jeu;
 
@@ -40,9 +39,9 @@ public class Partie{
         /*************
          * Variables *
          *************/
+    private final int maxEtages;  // se détermine en fonction du fichier 'data/Parties/Reglages.partie'
     private Jeu jeu;
     private int numeroEtage;
-    private final int maxEtages;  // se détermine en fonction du fichier 'data/Parties/Reglages.partie'
     private Etage etage;
     private Position positionEtage;
     private int tailleEtage;
@@ -142,7 +141,7 @@ public class Partie{
     private void centrerPosition(){
 
         int centre= (tailleEtage - 1) / 2;
-        this.positionEtage = new Position(new Coordonnee(centre, centre), new Taille(0, 0), new Taille(tailleEtage - 1, tailleEtage - 1));
+        this.positionEtage = new Position(new Coordonnee(centre, centre), new Coordonnee(0, 0), new Coordonnee(tailleEtage - 1, tailleEtage - 1));
     }
 
         /********************
