@@ -62,7 +62,6 @@ public class Coffre extends EntiteStatique{
 
         if(etat.equals(EtatSerrure.Ferme)){
 
-            System.out.println(jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle));
             if(jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle) > 0){
 
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
