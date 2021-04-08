@@ -6,7 +6,6 @@ import Plateau.Jeu;
 import Plateau.Salles.Cases.*;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Salle{
@@ -29,15 +28,21 @@ public class Salle{
         B,
         G,
         HB,
+        HB2,
         GD,
+        GD2,
         HD,
         DB,
         BG,
         HG,
         HDB,
+        HDB2,
         DBG,
+        DBG2,
         HBG,
+        HBG2,
         HDG,
+        HDG2,
         HDBG,
         None
     }
@@ -287,11 +292,25 @@ public class Salle{
             case 2:
                 if(haut && bas){
 
-                    type = Type.HB;
+                    if(seed%(((int) (Math.random() * 3)) + 1) != 1){
+
+                        type = Type.HB2;
+                    }
+                    else{
+
+                        type = Type.HB;
+                    }
                 }
                 if(gauche && droite){
 
-                    type = Type.GD;
+                    if(seed%(((int) (Math.random() * 2)) + 1) != 1){
+
+                        type = Type.GD;
+                    }
+                    else{
+
+                        type = Type.GD2;
+                    }
                 }
                 if(haut && droite){
 
@@ -315,19 +334,47 @@ public class Salle{
             case 3:
                 if(!haut){
 
-                    type = Type.DBG;
+                    if(seed%(((int) (Math.random() * 4)) + 1) != 1){
+
+                        type = Type.DBG2;
+                    }
+                    else{
+
+                        type = Type.DBG;
+                    }
                 }
                 if(!droite){
 
-                    type = Type.HBG;
+                    if(seed%(((int) (Math.random() * 3)) + 1) != 1){
+
+                        type = Type.HBG2;
+                    }
+                    else{
+
+                        type = Type.HBG;
+                    }
                 }
                 if(!bas){
 
-                    type = Type.HDG;
+                    if(seed%(((int) (Math.random() * 4)) + 1) != 1){
+
+                        type = Type.HDG;
+                    }
+                    else{
+
+                        type = Type.HDG2;
+                    }
                 }
                 if(!gauche){
 
-                    type = Type.HDB;
+                    if(seed%(((int) (Math.random() * 3)) + 1) != 1){
+
+                        type = Type.HDB2;
+                    }
+                    else{
+
+                        type = Type.HDB;
+                    }
                 }
 
                 break;

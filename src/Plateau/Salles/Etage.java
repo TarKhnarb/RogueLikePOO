@@ -387,8 +387,15 @@ public class Etage{
                             retour += "F";
                             break;
 
+                        case HB2:
+                            retour += "f";
+
                         case GD:
                             retour += "G";
+                            break;
+
+                        case GD2:
+                            retour += "g";
                             break;
 
                         case HD:
@@ -411,16 +418,32 @@ public class Etage{
                             retour += "L";
                             break;
 
+                        case HDB2:
+                            retour += "l";
+                            break;
+
                         case DBG:
                             retour += "M";
+                            break;
+
+                        case DBG2:
+                            retour += "m";
                             break;
 
                         case HBG:
                             retour += "N";
                             break;
 
+                        case HBG2:
+                            retour += "n";
+                            break;
+
                         case HDG:
                             retour += "O";
+                            break;
+
+                        case HDG2:
+                            retour += "o";
                             break;
 
                         case HDBG:

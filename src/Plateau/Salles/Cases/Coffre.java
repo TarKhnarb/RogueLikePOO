@@ -62,6 +62,7 @@ public class Coffre extends EntiteStatique{
 
         if(etat.equals(EtatSerrure.Ferme)){
 
+            System.out.println(jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle));
             if(jeu.getHeros().getInventaire().getInventaire(Inventaire.Element.Cle) > 0){
 
                 this.jeu.getHeros().getInventaire().enleverNElement(Inventaire.Element.Cle, 1);
@@ -89,7 +90,7 @@ public class Coffre extends EntiteStatique{
     @Override
     public boolean updateCase() throws Exception{
 
-        if(inventaire.nombreObjets() != 0){
+        if((inventaire.nombreObjets() != 0) && (etat.equals(EtatSerrure.Ouvert))){
 
             new VueInventaire(jeu, inventaire);
         }
