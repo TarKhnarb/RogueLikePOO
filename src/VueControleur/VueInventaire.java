@@ -79,6 +79,7 @@ public class VueInventaire extends JDialog implements ActionListener{
             // Fenêtre de dialogue
         this.add(panel);
         this.setVisible(true);
+        this.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
     }
 
         /****************

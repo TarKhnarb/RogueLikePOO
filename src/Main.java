@@ -3,7 +3,6 @@ import VueControleur.VueControleur;
 
 public class Main{
 
-
         /********
          * Main *
          ********/
