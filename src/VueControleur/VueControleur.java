@@ -191,7 +191,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerLesComposantsGraphiques(){
 
         setTitle("Roguelike");
-        setSize(64*Jeu.SIZE.x, 64*Jeu.SIZE.y + 64);
+        setSize(64*Jeu.SIZE.x + 20, 64*Jeu.SIZE.y + 64);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // permet de terminer l'application à la fermeture de la fenêtre
 
         JPanel panel = new JPanel();
