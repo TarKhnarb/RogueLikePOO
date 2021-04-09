@@ -103,6 +103,7 @@ public class Partie{
 
                 e.printStackTrace();
             }
+            System.out.println(etage.toString());
         }
     }
 
