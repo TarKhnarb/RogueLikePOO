@@ -353,7 +353,7 @@ public class Etage{
 
                 if(etage[x][y] == null){
 
-                    retour += "-";
+                    retour += ".";
                 }
                 else{
 
@@ -388,66 +388,67 @@ public class Etage{
                             break;
 
                         case HB2:
-                            retour += "f";
-
-                        case GD:
                             retour += "G";
                             break;
 
-                        case GD2:
-                            retour += "g";
-                            break;
-
-                        case HD:
+                        case GD:
                             retour += "H";
                             break;
 
-                        case DB:
+                        case GD2:
                             retour += "I";
                             break;
 
-                        case BG:
+                        case HD:
                             retour += "J";
                             break;
 
-                        case HG:
+                        case DB:
                             retour += "K";
                             break;
 
-                        case HDB:
+                        case BG:
                             retour += "L";
                             break;
 
-                        case HDB2:
-                            retour += "l";
-                            break;
-
-                        case DBG:
+                        case HG:
                             retour += "M";
                             break;
 
-                        case DBG2:
-                            retour += "m";
-                            break;
-
-                        case HBG:
+                        case HDB:
                             retour += "N";
                             break;
 
-                        case HBG2:
-                            retour += "n";
-                            break;
-
-                        case HDG:
+                        case HDB2:
                             retour += "O";
                             break;
 
+                        case DBG:
+                            retour += "P";
+                            break;
+
+                        case DBG2:
+                            retour += "Q";
+                            break;
+
+                        case HBG:
+                            retour += "R";
+                            break;
+
+                        case HBG2:
+                            retour += "S";
+                            break;
+
+                        case HDG:
+                            retour += "T";
+                            break;
+
                         case HDG2:
-                            retour += "o";
+                            retour += "U";
                             break;
 
                         case HDBG:
-                            retour += "P";
+                            retour += "V";
                             break;
 
                         case None:

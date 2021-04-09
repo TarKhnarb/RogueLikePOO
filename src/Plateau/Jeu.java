@@ -156,9 +156,9 @@ public class Jeu extends Observable implements Runnable{
             setChanged();
             notifyObservers();
 
-            if (restart){
+            if(restart){
 
-                restart=false;
+                restart = false;
                 break;
             }
 
@@ -176,6 +176,7 @@ public class Jeu extends Observable implements Runnable{
 
         System.out.println("Partie terminée");
         initialisationDesEntites();
+        nouveauHero();
         start();
 
     }
