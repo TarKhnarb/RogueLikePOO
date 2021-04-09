@@ -267,6 +267,8 @@ public class VueControleur extends JFrame implements Observer{
             inventaireLabel[0][i].setIcon(iconInventaire[(i - 1)/2]);
             inventaireLabel[0][i + 1].setText(String.valueOf(inventaire.getInventaire(Inventaire.Element.values()[(i - 1)/2])));
         }
+
+        inventaireLabel[0][(int) ((size.x+1)/2)].setText("Etage n°" + jeu.getPartie().getNumeroEtage());
     }
 
         /*********************
