@@ -25,22 +25,6 @@ public class Porte extends EntiteStatique{
         setType(getTypeCase());
     }
 
-        /****************
-         * GetDirection *
-         ****************/
-    public Direction getDirection(){
-
-        return direction;
-    }
-
-        /***********
-         * GetEtat *
-         ***********/
-    public EtatSerrure getEtat(){
-
-        return etat;
-    }
-
         /***************
          * OuvrirPorte *
          ***************/

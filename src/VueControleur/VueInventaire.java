@@ -44,7 +44,7 @@ public class VueInventaire extends JDialog implements ActionListener{
         JLabel[][] inventaireLabel = new JLabel[1][nbObj*2];
 
         int placementObj = 0;
-        for(int i = 0; i < this.inventaire.getTaille(); ++i){
+        for(int i = 0; i < Inventaire.Element.All.ordinal(); ++i){
 
             if(this.inventaire.getInventaire(Inventaire.Element.values()[i]) != 0){
 

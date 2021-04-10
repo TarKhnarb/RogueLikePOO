@@ -28,15 +28,6 @@ public class Coordonnee{
         /************
          * SetCoord *
          ************/
-    public void setCoord(int x, int y){
-
-        this.x = x;
-        this.y = y;
-    }
-
-        /************
-         * SetCoord *
-         ************/
     public void setCoord(Coordonnee coordonnee){
 
         this.x = coordonnee.x;

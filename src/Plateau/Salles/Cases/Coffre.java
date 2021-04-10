@@ -47,14 +47,6 @@ public class Coffre extends EntiteStatique{
         }
     }
 
-        /***********
-         * GetEtat *
-         ***********/
-    public EtatSerrure getEtat(){
-
-        return etat;
-    }
-
         /****************
          * OuvrirCoffre *
          ****************/

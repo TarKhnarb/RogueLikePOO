@@ -37,14 +37,6 @@ public class Inventaire{
         }
     }
 
-        /*************
-         * GetTaille *
-         *************/
-    public int getTaille(){
-
-        return Element.All.ordinal();
-    }
-
         /****************
          * NombreObjets *
          ****************/

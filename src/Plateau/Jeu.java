@@ -56,24 +56,6 @@ public class Jeu extends Observable implements Runnable{
 
         return partie;
     }
-
-        /*************
-         * GetGrille *
-         *************/
-    public EntiteStatique[][] getGrille(){
-
-        try{
-
-            return partie.getSalle().getGrille();
-        }
-        catch(Exception e){
-
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
         /*************
          * GetEntite *
          *************/

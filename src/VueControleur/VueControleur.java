@@ -209,7 +209,7 @@ public class VueControleur extends JFrame implements Observer{
     private void placerInventaire(JPanel panel){
 
         Inventaire inventaire = jeu.getHeros().getInventaire();
-        JPanel panelInventaire = new JPanel(new GridLayout(1, inventaire.getTaille()*2));
+        JPanel panelInventaire = new JPanel(new GridLayout(1, Inventaire.Element.All.ordinal()*2));
 
         inventaireLabel = new JLabel[1][size.x];
 
@@ -262,7 +262,7 @@ public class VueControleur extends JFrame implements Observer{
 
         Inventaire inventaire = jeu.getHeros().getInventaire();
 
-        for(int i = 1; i < inventaire.getTaille()*2; i= (i+2)){
+        for(int i = 1; i < Inventaire.Element.All.ordinal()*2; i= (i+2)){
 
             inventaireLabel[0][i].setIcon(iconInventaire[(i - 1)/2]);
             inventaireLabel[0][i + 1].setText(String.valueOf(inventaire.getInventaire(Inventaire.Element.values()[(i - 1)/2])));
