@@ -176,7 +176,7 @@ public class Salle{
          ***************/
     public void placerCases() throws FileNotFoundException{
 
-        Scanner scanner = new Scanner(new File("data/Salles/Salle_" + this.type.name() + ".salle"));
+        Scanner scanner = new Scanner(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Salles/Salle_" + this.type.name() + ".salle")));
 
         for(int y = 0; y < Jeu.SIZE.y; ++y){
 

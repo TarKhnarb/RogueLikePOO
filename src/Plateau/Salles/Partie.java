@@ -7,6 +7,7 @@ import Plateau.Jeu;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -153,7 +154,7 @@ public class Partie{
         informations = new ArrayList<>();
         int cpt = 0;
 
-        Scanner scanner = new Scanner(new File("data/Parties/Reglages.partie"));
+        Scanner scanner = new Scanner(new InputStreamReader(getClass().getClassLoader().getResourceAsStream("Parties/Reglages.partie")));
         if(scanner.hasNextInt()){
 
             this.tailleEtage = scanner.nextInt();
