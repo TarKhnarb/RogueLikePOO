@@ -33,9 +33,6 @@ ___
 > Lors de vos aventures vous serez amené à croiser des coffres qui contiennent au minimum une clé et une capsule.
 > Vous aurez le choix de récupérer ou non son contenu via un pop-up qui apparait au dessus de l'inventaire. Notez que si le coffre est vide, le pop-up n'apparaitra pas.
 
-## Lancement du jeu
-> ????????????????
-
 ## Modification des fichiers pour les parties
 
 ### Les étages:
